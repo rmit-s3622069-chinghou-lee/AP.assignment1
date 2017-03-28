@@ -1,6 +1,6 @@
 package assignment1;
 
-public abstract class Person {
+public abstract class AbstractAthlete {
 	
 	private String id; // represent person's ID
 	private String name; // represent person's name
@@ -8,7 +8,7 @@ public abstract class Person {
 	private String state; //represent person's state
 	
 	// Person's constructor
-	public Person(String id, String name, int age, String state) {
+	public AbstractAthlete(String id, String name, int age, String state) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
