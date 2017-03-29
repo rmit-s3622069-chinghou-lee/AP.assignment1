@@ -2,7 +2,7 @@ package assignment1;
 
 import java.util.ArrayList;
 
-public class Official extends Participants {
+public class Official extends Participant {
 	public String officialID;
 	public String officialName;
 	public int officialAge;

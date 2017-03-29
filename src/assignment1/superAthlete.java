@@ -2,7 +2,7 @@ package assignment1;
 
 import java.util.ArrayList;
 
-public class superAthlete extends Participants{
+public class superAthlete extends Participant{
 
 	public String superID;
 	public String superName;
