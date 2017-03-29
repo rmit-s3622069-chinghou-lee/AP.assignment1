@@ -26,4 +26,10 @@ public class superAthlete extends Participant{
 		participant.add(new superAthlete("CY03", "Peter", 52, "NSW", "Swimmer"));
 		participant.add(new superAthlete("CY04", "Messi", 39, "VIC", "Swimmer"));
 	}
+
+	@Override
+	public double compete() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

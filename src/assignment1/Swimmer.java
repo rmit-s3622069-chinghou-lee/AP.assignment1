@@ -30,6 +30,7 @@ public class Swimmer extends Participant {
 		System.out.println(participant);
 	}
 	
+	@Override
 	public double compete(){
 		double randomNum = Math.random()*(maxTime - minTime +1) + minTime;
 		return randomNum;

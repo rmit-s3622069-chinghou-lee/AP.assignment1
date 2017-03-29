@@ -2,46 +2,47 @@ package assignment1;
 
 public abstract class Participant {
 
-	public String userID; // represent participant's ID
-	public String userName; // represent participant's name
-	public int userAge; // represent participant's age
-	public String userState; // represent participant's state
-	public String userType; // represent participant's type
-	public double minTime = 0;
-	public double maxTime = 0;
+	private String userID; // represent participant's ID
+	private String userName; // represent participant's name
+	private int userAge; // represent participant's age
+	private String userState; // represent participant's state
+	private String userType; // represent participant's type
+	private ParticipantsDatabase pd;
 
-	public Participant(String id, String name, int age, String state, String type) { // Participant's
-																						// constructor
+	// Participant constructor invoked by subclasses using super()
+	public Participant(String id, String name, int age, String state, String type) { 
 		this.userID = id;
 		this.userName = name;
 		this.userAge = age;
 		this.userState = state;
 		this.userType = type;
-	}
+	} // end Participant constructor
 
 	public String getID() {
 		return userID; // get participant's ID
-	}
-
+	} // end method getID
+ 
 	public String getName() {
 		return userName; // get participant's name
-	}
+	} // end method getName
 
 	public int getAge() {
 		return userAge; // get participant's age
-	}
+	} // end method getAge
 
 	public String getState() {
 		return userState; // get participant's state
-	}
+	} // end method getState
 
 	public String getType() {
 		return userType; // get participant's type
-	}
+	} // end method getType
 	
-	public double compete(){
-		double randomNum = Math.random()*(maxTime - minTime +1) + minTime;
-		return randomNum;
-	}
+	public ParticipantsDatabase getParticipantsDatabase(){ // return reference to Participants' Database
+		return pd;
+	} // end method getParticipantsDatabase
+	
+	// perform the competition (overridden by each subclass)
+	abstract public double compete();
 
-}
+} // end class Participant

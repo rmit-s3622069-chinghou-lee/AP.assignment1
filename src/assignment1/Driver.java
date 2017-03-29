@@ -25,7 +25,7 @@ public class Driver {
 		menuSelect();
 	}
 
-	public int displayMenu() { // start Ozylimpic
+	public int displayMenu() { // display the Ozlympic's main menu and return an input selection
 		int option = 0;
 		boolean validInput = false;
 		
@@ -48,10 +48,14 @@ public class Driver {
 				validInput = false;
 			}
 		} while (!validInput);
-		return option;
-	}
+		return option; // return user's selection
+	} // end method displayMenu
 
 	public void menuSelect() {
+		
+		// local variable to store currentGame currently being processed
+		Game currentGame = null;
+		
 		int option = displayMenu();
 		switch (option) {
 		case (1):

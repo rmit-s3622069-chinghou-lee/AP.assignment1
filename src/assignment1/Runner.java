@@ -28,6 +28,7 @@ public class Runner extends Participant {
 			participant.add(new Runner("RU04", "Meb", 27, "VIC", "Runner"));
 		}
 		
+		@Override
 		public double compete(){
 			double randomNum = Math.random()*(maxTime - minTime +1) + minTime;
 			return randomNum;
