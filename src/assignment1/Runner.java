@@ -3,21 +3,11 @@ package assignment1;
 import java.util.ArrayList;
 
 public class Runner extends Participant {
-		public String runnerID;
-		public String runnerName;
-		public int runnerAge;
-		public String runnerState;
-		public String runnerType;
 		public double minTime = 10;
 		public double maxTime = 20;
 		
 		public Runner(String id, String name, int age, String state,String type) {
 			super(id, name, age, state, type);
-			this.runnerID = id;
-			this.runnerName =name;
-			this.runnerAge = age;
-			this.runnerState =state;
-			this.runnerType = type;
 		}
 		
 		public void addRunner() {

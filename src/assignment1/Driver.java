@@ -2,12 +2,9 @@ package assignment1;
 
 import java.util.Scanner;
 
-/*
- * Driver program for the Ozlympic
- */
 public class Driver {
 	private String gameType;
-	private Game game;
+	private Game game; // Ozylympic's game
 	
 	// constants corresponding to main menu options
 	private static final int gameSelect = 1;
@@ -18,8 +15,8 @@ public class Driver {
 	private static final int gameExit = 6;
 	
 	public Driver(){
-		
-	}
+		game = new Game(); // create game
+	} // end no-argument Driver constructor
 
 	public void run() {
 		menuSelect();
@@ -58,22 +55,22 @@ public class Driver {
 		
 		int option = displayMenu();
 		switch (option) {
-		case (1):
+		case gameSelect:
 			game.gameSelect();
 			break;
-		case (2):
-			// Game.gamePrediction();
+		case gamePrediction:
+			game.gamePrediction();
 			break;
-		case (3):
-			// Game.gameStart();
+		case gameStart:
+			game.gameStart();
 			break;
-		case (4):
-			// Game.displayFinalResult();
+		case displayFinalResult:
+			game.displayFinalResult();
 			break;
-		case (5):
-			// Game.displayAthletePoints();
+		case displayAthletePoints:
+			game.displayAthletePoints();
 			break;
-		case (6):
+		case gameExit:
 			System.out.println("Game Over!");
 			System.exit(0);
 			break;

@@ -7,6 +7,7 @@ public abstract class Participant {
 	private int userAge; // represent participant's age
 	private String userState; // represent participant's state
 	private String userType; // represent participant's type
+	private double competeTime; // represent participant's time
 	private ParticipantsDatabase pd;
 
 	// Participant constructor invoked by subclasses using super()

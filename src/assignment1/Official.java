@@ -25,4 +25,10 @@ public class Official extends Participant {
 		participant.add(new Official("OF03", "Peter", 52, "NSW", "Referee"));
 		participant.add(new Official("OF04", "Messi", 39, "VIC", "Referee"));
 	}
+
+	@Override
+	public double compete() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

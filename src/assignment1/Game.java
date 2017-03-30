@@ -3,11 +3,17 @@ package assignment1;
 import java.util.Scanner;
 
 public class Game {
-	public String gameType;
-	public String gameID;
+	
+	private String raceID;
+	private String raceType;
+	private int minAthletes;
+	private int maxAthletes;
+	private int minTime;
+	private int maxTime;
+	
 
 	public Game(){
-		gameType =null;
+		raceType =null;
 	}
 
 	public int gameSelect() {
@@ -31,7 +37,7 @@ public class Game {
 			if (option == 1){
 				x += x; // not adding up,need to fix
 				System.out.println("S"+ x);
-				gameType = "Swim";
+				raceType = "Swim";
 				// System.out.println(gameType);
 			}
 			else if (option == 2){
@@ -50,9 +56,9 @@ public class Game {
 	}
 
 	public int gamePrediction() {
+		
 		int option = gameSelect();
 		if (option == 1){
-			Swimmer swimmer = new Swimmer(gameID, gameID, option, gameID, gameID);
 			
 			System.out.println();
 		}
@@ -67,11 +73,11 @@ public class Game {
 
 	public void gameStart() {
 		
-	if (gameType == "Swim"){
+	if (raceType == "Swim"){
 		// do swim game
-	}else if (gameType == "Cycle"){
+	}else if (raceType == "Cycle"){
 		// do cycle game
-	}else if (gameType == "Run"){
+	}else if (raceType == "Run"){
 		// do run game
 	}
 		// System.out.println("startGame");

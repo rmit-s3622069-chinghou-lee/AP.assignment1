@@ -3,20 +3,9 @@ package assignment1;
 import java.util.ArrayList;
 
 public class superAthlete extends Participant{
-
-	public String superID;
-	public String superName;
-	public int superAge;
-	public String superState;
-	public String superType;
 	
 	public superAthlete(String id, String name, int age, String state,String type) {
 		super(id, name, age, state, type);
-		this.superID = id;
-		this.superName =name;
-		this.superAge = age;
-		this.superState =state;
-		this.superType = type;
 	}
 	
 	public static void addSuperAthlete() {

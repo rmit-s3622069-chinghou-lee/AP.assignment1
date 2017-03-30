@@ -4,21 +4,12 @@ import java.util.ArrayList;
 
 public class Swimmer extends Participant {
 
-	public String swimmerID;
-	public String swimmerName;
-	public int swimmerAge;
-	public String swimmerState;
-	public String swimmerType;
 	public double minTime = 100;
 	public double maxTime = 200;
 	
 	public Swimmer(String id, String name, int age, String state,String type) {
 		super(id, name, age, state, type);
-		this.swimmerID = id;
-		this.swimmerName =name;
-		this.swimmerAge = age;
-		this.swimmerState =state;
-		this.swimmerType = type;
+
 	}
 	
 	public static void addSwimmer() {
