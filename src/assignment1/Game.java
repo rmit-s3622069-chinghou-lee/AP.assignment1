@@ -62,6 +62,7 @@ public class Game {
 		boolean validInput = false;
 		do {
 			try {
+				System.out.println("Print out athletes base on gameType!");
 				System.out.println("Please predict the winner by entering the athlete's ID: ");
 				Scanner scanner = new Scanner(System.in);
 				userPredict = scanner.nextInt();
@@ -88,7 +89,3 @@ public class Game {
 	}
 }
 
-/*
- * if (gameType == option 1){ execute swim game }else if (gameType == option 2){
- * execute run game }else if (gameType == option 3){ execute cycle game }
- */

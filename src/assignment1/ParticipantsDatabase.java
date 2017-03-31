@@ -31,7 +31,7 @@ public class ParticipantsDatabase{
 	}
 	
 	public ArrayList<Participant> getParticipant(){
-		return ParticipantsDatabase.participant;
+		return participant;
 		}
 		
 	}
