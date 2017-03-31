@@ -14,7 +14,7 @@ public class Game {
 	private ParticipantsDatabase pd;
 
 	public Game() {
-		pd = new ParticipantsDatabase();
+	pd = new ParticipantsDatabase(raceID, raceID, maxAthletes, raceID, raceID);
 	}
 
 	public String gameSelect() {
@@ -35,12 +35,15 @@ public class Game {
 
 				if (option == 1) {
 					raceType = "swim";
+					//pd.getParticipantType(raceType);
 					validInput = true;
 				} else if (option == 2) {
 					raceType = "run";
+					//pd.getParticipantType(raceType);
 					validInput = true;
 				} else if (option == 3) {
 					raceType = "cycle";
+					//pd.getParticipantType(raceType);
 					validInput = true;
 				} else {
 					System.out.println("Please insert a valid input!");
@@ -75,7 +78,8 @@ public class Game {
 	}
 
 	public void gameStart() {
-
+		//System.out.println("gameStart");
+		pd.printParticipant();
 	}
 
 	public void displayFinalResult() {

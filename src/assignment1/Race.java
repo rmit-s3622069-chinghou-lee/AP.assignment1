@@ -4,15 +4,16 @@ public class Race extends Game {
 	public int minAthlete = 4;
 	public int maxAthlete = 8;
 	
-	public int raceSwim(){
+	public int raceSwim(String raceType){
+		//generate 
 		return 0;
 	}
 	
-	public int raceCycle(){
+	public int raceCycle(String raceType){
 		return 0;
 	}
 	
-	public int raceRun(){
+	public int raceRun(String raceType){
 		return 0;
 	}
 	

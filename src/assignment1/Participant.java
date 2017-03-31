@@ -18,7 +18,7 @@ public abstract class Participant {
 		this.userState = state;
 		this.userType = type;
 	} // end Participant constructor
-
+	
 	public String getID() {
 		return userID; // get participant's ID
 	} // end method getID
@@ -42,5 +42,5 @@ public abstract class Participant {
 	public ParticipantsDatabase getParticipantsDatabase(){ // return reference to Participants' Database
 		return pd;
 	} // end method getParticipantsDatabase
-
+	
 } // end class Participant

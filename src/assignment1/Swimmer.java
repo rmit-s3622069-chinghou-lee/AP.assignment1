@@ -11,15 +11,6 @@ public class Swimmer extends Athlete {
 		super(id, name, age, state, type);
 	}
 	
-	public static void addSwimmer() {
-		ArrayList<Swimmer> participant = new ArrayList<Swimmer>();
-		participant.add(new Swimmer("CY01", "Gavin", 45, "VIC", "Swimmer" ));
-		participant.add(new Swimmer("CY02", "fred", 41, "NSW", "Swimmer"));
-		participant.add(new Swimmer("CY03", "Peter", 52, "NSW", "Swimmer"));
-		participant.add(new Swimmer("CY04", "Messi", 39, "VIC", "Swimmer"));
-		System.out.println(participant);
-	}
-	
 	public double compete(){
 		double randomNum = Math.random()*(maxTime - minTime +1) + minTime;
 		return randomNum;
