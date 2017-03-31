@@ -42,8 +42,5 @@ public abstract class Participant {
 	public ParticipantsDatabase getParticipantsDatabase(){ // return reference to Participants' Database
 		return pd;
 	} // end method getParticipantsDatabase
-	
-	// perform the competition (overridden by each subclass)
-	abstract public double compete();
 
 } // end class Participant

@@ -1,8 +1,6 @@
 package assignment1;
 
 public class Race extends Game {
-	public int raceID;
-	public String raceType;
 	public int minAthlete = 4;
 	public int maxAthlete = 8;
 	

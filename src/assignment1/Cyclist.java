@@ -2,7 +2,7 @@ package assignment1;
 
 import java.util.ArrayList;
 
-public class Cyclist extends Participant {
+public class Cyclist extends Athlete {
 	public double minTime = 500;
 	public double maxTime = 800;
 	
@@ -19,7 +19,6 @@ public class Cyclist extends Participant {
 		participant.add(new Cyclist("CY04", "Messi", 39, "VIC", "Cyclist"));
 	}
 	
-	@Override
 	public double compete(){
 		double randomNum = Math.random()*(maxTime - minTime +1) + minTime;
 		return randomNum;

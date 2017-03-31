@@ -2,12 +2,12 @@ package assignment1;
 
 import java.util.ArrayList;
 
-public class ParticipantsDatabase {
+public class ParticipantsDatabase{
 
-	private ArrayList<Participant> participant = new ArrayList<Participant>();
+	private static ArrayList<Participant> participant = new ArrayList<Participant>();
 	
 	
-	public ParticipantsDatabase(){ // no-argument Participants Database constructor initializes participant
+	protected ParticipantsDatabase(){    // no-argument Participants Database constructor initializes participant
 		participant.add(new Swimmer("SW01", "Michael", 30, "TAS", "Swimmer" ));
 		participant.add(new Swimmer("SW02", "Ryan", 32, "NSW", "Swimmer"));
 		participant.add(new Swimmer("SW03", "Ian", 27, "NT", "Swimmer"));
@@ -24,12 +24,15 @@ public class ParticipantsDatabase {
 		participant.add(new superAthlete("SA02", "Charissa", 27, "TAS", "Super Athlete"));
 		participant.add(new superAthlete("SA03", "Shelden", 28, "NSW", "Super Athlete"));
 		participant.add(new superAthlete("SA04", "Candace", 26, "VIC", "Super Athlete"));
+		participant.add(new Official("OF01", "Ed", 47, "VIC", "Referee"));
+		participant.add(new Official("OF02", "Walt", 45, "TAS", "Referee"));
+		participant.add(new Official("OF03", "Jeff", 40, "NSW", "Referee"));
+		participant.add(new Official("OF04", "Gene", 35, "NT", "Referee"));
 	}
 	
-	private Participant getParticipant(){
-		return null;
+	public ArrayList<Participant> getParticipant(){
+		return ParticipantsDatabase.participant;
+		}
 		
 	}
 	
-
-}
