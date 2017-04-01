@@ -1,6 +1,5 @@
 package assignment1;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -8,7 +7,6 @@ public class Game {
 	private int raceID = 0;
 	
 	private ParticipantsDatabase pd = new ParticipantsDatabase();
-	private Driver driver = new Driver();
 	
 	public Game(int raceID){
 		this.raceID = raceID;

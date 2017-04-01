@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class Driver {
 	
-	private int option;
+	private int option = 0;
 	
 	private Game game = new Game(option);
+	private ParticipantsDatabase pd = new ParticipantsDatabase();
 
 	// constants corresponding to main menu options
 	private static final int gameSelect = 1;
