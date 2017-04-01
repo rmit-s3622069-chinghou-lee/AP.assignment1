@@ -36,8 +36,7 @@ public class ParticipantsDatabase{
 		return this.participant();
 	}
 	
-	public void printAthletes() {
-		int option = game.getUserSelection();
+	public void printAthletes(int option) {
 		for (int i = 0; i < participant.size(); i++) {
 			String checkType = participant.get(i).getType();
 			String id = participant.get(i).getID();

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Game {
 
-	private int raceID;
+	private int raceID = 0;
 	
 	private ParticipantsDatabase pd = new ParticipantsDatabase();
 	private Driver driver = new Driver();
@@ -22,11 +22,6 @@ public class Game {
 		this.raceID = raceID;
 	}
 	
-
-	public int getUserSelection(){
-		return driver.gameSelect();
-	}
-	
 	public String generateRaceID(int option){
 		if (option == 1){
 			
@@ -34,27 +29,68 @@ public class Game {
 		return null;
 	}
 	
+	public int gameSelect() {
+		boolean validInput = false;
 
-	public ArrayList<Participant> getList() {
-		return pd.getParticipant();
-	}
+		do {
+			validInput = true;
+			try {
+				String menu[] = { "Select a sport to play: ", "1. Swimming race", "2. Running race",
+						"3. Cycling race" };
+				for (int i = 0; i < menu.length; i++)
+					System.out.println(menu[i]); // display the main menu
 
-	public void printAthletes(int option) {
-		for (int i = 0; i < pd.getParticipant().size(); i++) {
-			String checkType = pd.getParticipant().get(i).getType();
-			String id = pd.getParticipant().get(i).getID();
-			String name = pd.getParticipant().get(i).getName();
-			int age = pd.getParticipant().get(i).getAge();
-			String state = pd.getParticipant().get(i).getState();
-			String type = pd.getParticipant().get(i).getType();
-
-			if (option == 1 && checkType.equals("Swimmer")) {
-				System.out.println(id + name + age + state + type);
-			} else if (option == 2 && checkType.equals("Runner")) {
-				System.out.println(id + name + age + state + type);
-			} else if (option == 3 && checkType.equals("Cyclist")) {
-				System.out.println(id + name + age + state + type);
+				System.out.print("Enter a option: ");
+				Scanner scanner = new Scanner(System.in);
+				raceID = scanner.nextInt(); // user insert input
+				
+				if (raceID == 1 || raceID ==2 || raceID ==3) {
+					System.out.println("");
+				} else {
+					System.out.println("Please insert a valid input!");
+					System.out.println("");
+					validInput = false;
+				}
+			} catch (Exception e) {
+				System.out.println("Not a valid Input. Please try again!");
+				System.out.println("");
+				validInput = false;
 			}
-		}
+		} while (!validInput);
+
+		return raceID;
 	}
+
+	public int gamePrediction() {
+		int userPredict = 0;
+		boolean validInput = false;
+		
+		pd.printAthletes(raceID);
+		do {
+			try {
+				System.out.println("Please predict the winner by entering the athlete's ID: ");
+				Scanner scanner = new Scanner(System.in);
+				userPredict = scanner.nextInt();
+			} catch (Exception e) {
+				System.out.println("Please insert valid athlete's ID!");
+			}
+		} while (!validInput);
+
+		return userPredict;
+	}
+
+	public void gameStart() {
+		System.out.println("gameStart");
+
+	}
+
+	public void displayFinalResult() {
+		System.out.println("displayFinalResult");
+	}
+
+	public void displayAthletePoints() {
+		System.out.println("displayAthletePoints");
+
+	}
+	
 }
