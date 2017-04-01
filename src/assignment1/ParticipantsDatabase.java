@@ -2,22 +2,12 @@ package assignment1;
 
 import java.util.ArrayList;
 
-public class ParticipantsDatabase extends Participant {
-
+public class ParticipantsDatabase{
+	
 	private ArrayList<Participant> participant;
-	private Participant p;
-	
-	public ParticipantsDatabase(String id, String name, int age, String state, String type) {
-		super(id, name, age, state, type);
 
+	private ArrayList<Participant> participant(){
 		participant = new ArrayList<Participant>();
-	}
-	
-	public String toString(){
-		return p.getID() + p.getName() + p.getAge() + p.getState() + p.getType();
-			}
-
-	public void addParticipant(){
 		participant.add(new Swimmer("SW01", "Michael", 30, "TAS", "Swimmer"));
 		participant.add(new Swimmer("SW02", "Ryan", 32, "NSW", "Swimmer"));
 		participant.add(new Swimmer("SW03", "Ian", 27, "NT", "Swimmer"));
@@ -38,30 +28,34 @@ public class ParticipantsDatabase extends Participant {
 		participant.add(new Official("OF02", "Walt", 45, "TAS", "Referee"));
 		participant.add(new Official("OF03", "Jeff", 40, "NSW", "Referee"));
 		participant.add(new Official("OF04", "Gene", 35, "NT", "Referee"));
-		
-		participant.forEach(System.out::println);
+		return participant;
 	}
 	
-
-	public ArrayList <Participant> getParticipant(){
-		return this.participant;
+	public ArrayList<Participant> getParticipant(){
+		return this.participant();
 	}
 	
-	
-	public void printParticipant(){
-		for (int i = 0; i< participant.size() ;i++)
-			participant.get(i).toString();
-		//this.participant.forEach(System.out::println);
-			}
-
-	/*public Participant getParticipantType(String userType) {
-
-		for (Participant participant : participant) {
-			if (participant.getType() == userType)
-				participant.forEach(System.out::println)
-				return participant;
-		}
-		return null;
-	}*/
 
 }
+	
+
+	/*public void printAllParticipant() {
+		addParticipant();
+		for (int i = 0; i < participant.size(); i++) {
+			String id = participant.get(i).getID();
+			String name = participant.get(i).getName();
+			int age = participant.get(i).getAge();
+			String state = participant.get(i).getState();
+			String athleteType = participant.get(i).getType();
+			System.out.println("ID = " + id + " name = " + name + " age = " + age + " state = " + state
+					+ " athlete type = " + athleteType);*/
+
+	/*
+	 * public Participant getParticipantType(String userType) {
+	 * 
+	 * for (Participant participant : participant) { if (participant.getType()
+	 * == userType) participant.forEach(System.out::println) return participant;
+	 * } return null; }
+	 */
+
+
