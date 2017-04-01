@@ -8,7 +8,6 @@ public abstract class Participant {
 	private String userState; // represent participant's state
 	private String userType; // represent participant's type
 	private double competeTime; // represent participant's time
-	private ParticipantsDatabase pd;
 
 	// Participant constructor invoked by subclasses using super()
 	public Participant(String id, String name, int age, String state, String type) { 
@@ -38,9 +37,5 @@ public abstract class Participant {
 	public String getType() {
 		return userType; // get participant's type
 	} // end method getType
-	
-	public ParticipantsDatabase getParticipantsDatabase(){ // return reference to Participants' Database
-		return pd;
-	} // end method getParticipantsDatabase
 	
 } // end class Participant
