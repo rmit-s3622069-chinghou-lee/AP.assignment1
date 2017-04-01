@@ -3,6 +3,9 @@ package assignment1;
 import java.util.Scanner;
 
 public class Driver {
+	
+	private Game game;
+	private ParticipantsDatabase pd = new ParticipantsDatabase();
 
 	// constants corresponding to main menu options
 	private static final int gameSelect = 1;
@@ -19,7 +22,7 @@ public class Driver {
 		switch (option) {
 		case gameSelect:
 			gameSelect();
-			displayMenu();
+			menuSelect();
 			break;
 		case gamePrediction:
 			gamePrediction();
@@ -46,6 +49,7 @@ public class Driver {
 		boolean validInput = false;
 
 		do {
+			validInput = true;
 			try {
 				String menu[] = { "Ozlympic Game", "========================", "1. Select a game to run",
 						"2. Predict the winner of the game", "3. Start the game",
@@ -59,7 +63,6 @@ public class Driver {
 				option = scanner.nextInt(); // user insert input
 				if (option >= 1 && option <= 6) {
 					System.out.println("");
-					validInput = true;
 				} else {
 					System.out.println("Please insert a valid input!");
 					System.out.println("");
@@ -71,7 +74,6 @@ public class Driver {
 				validInput = false;
 			}
 		} while (!validInput);
-
 		return option; // return user's selection
 	} // end method displayMenu
 
@@ -80,6 +82,7 @@ public class Driver {
 		boolean validInput = false;
 
 		do {
+			validInput = true;
 			try {
 				String menu[] = { "Select a sport to play: ", "1. Swimming race", "2. Running race",
 						"3. Cycling race" };
@@ -89,13 +92,9 @@ public class Driver {
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				option = scanner.nextInt(); // user insert input
-
-				if (option == 1) {
-					validInput = true;
-				} else if (option == 2) {
-					validInput = true;
-				} else if (option == 3) {
-					validInput = true;
+				
+				if (option == 1 || option ==2 || option ==3) {
+					System.out.println("");
 				} else {
 					System.out.println("Please insert a valid input!");
 					System.out.println("");
@@ -107,16 +106,17 @@ public class Driver {
 				validInput = false;
 			}
 		} while (!validInput);
+
 		return option;
 	}
 
 	public int gamePrediction() {
 		int userPredict = 0;
-		int option = gameSelect();
 		boolean validInput = false;
+		
+		pd.printAthletes();
 		do {
 			try {
-				// race.printAthletes(option);
 				System.out.println("Please predict the winner by entering the athlete's ID: ");
 				Scanner scanner = new Scanner(System.in);
 				userPredict = scanner.nextInt();

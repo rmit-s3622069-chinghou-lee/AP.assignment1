@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ParticipantsDatabase{
 	
+	private Game game;
 	private ArrayList<Participant> participant;
 
 	private ArrayList<Participant> participant(){
@@ -35,7 +36,25 @@ public class ParticipantsDatabase{
 		return this.participant();
 	}
 	
+	public void printAthletes() {
+		int option = game.getUserSelection();
+		for (int i = 0; i < participant.size(); i++) {
+			String checkType = participant.get(i).getType();
+			String id = participant.get(i).getID();
+			String name = participant.get(i).getName();
+			int age = participant.get(i).getAge();
+			String state = participant.get(i).getState();
+			String type = participant.get(i).getType();
 
+			if (option == 1 && checkType.equals("Swimmer")) {
+				System.out.println(id + name + age + state + type);
+			} else if (option == 2 && checkType.equals("Runner")) {
+				System.out.println(id + name + age + state + type);
+			} else if (option == 3 && checkType.equals("Cyclist")) {
+				System.out.println(id + name + age + state + type);
+			}
+		}
+	}
 }
 	
 
