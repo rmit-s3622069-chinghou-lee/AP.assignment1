@@ -3,11 +3,6 @@ package assignment1;
 import java.util.Scanner;
 
 public class Driver {
-	
-	private int option = 0;
-	
-	private Game game = new Game(option);
-	private ParticipantsDatabase pd = new ParticipantsDatabase();
 
 	// constants corresponding to main menu options
 	private static final int gameSelect = 1;
@@ -17,32 +12,40 @@ public class Driver {
 	private static final int displayAthletePoints = 5;
 	private static final int gameExit = 6;
 
-	public void menuSelect() {
+	public void gameRun() {
 
-		int option = displayMenu();
+		int raceType = 0;
+		boolean gameLoop = false;
 
-		switch (option) {
-		case gameSelect:
-			game.gameSelect();
-			menuSelect();
-			break;
-		case gamePrediction:
-			game.gamePrediction();
-			break;
-		case gameStart:
-			game.gameStart();
-			break;
-		case displayFinalResult:
-			game.displayFinalResult();
-			break;
-		case displayAthletePoints:
-			game.displayAthletePoints();
-			break;
-		case gameExit:
-			System.out.println("Game Over!");
-			System.exit(0);
-			break;
-		}
+		Game Game = new Game();
+
+		do {
+			int gameOption = displayMenu();
+			switch (gameOption) {
+			case gameSelect:
+				raceType = Game.gameSelect();
+				gameLoop = false;
+				break;
+			case gamePrediction:
+				Game.gamePrediction(raceType);
+				break;
+			case gameStart:
+				Game.gameStart();
+				break;
+			case displayFinalResult:
+				Game.displayFinalResult();
+				break;
+			case displayAthletePoints:
+				Game.displayAthletePoints();
+				break;
+			case gameExit:
+				System.out.println("Game Over!");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("\nInput error! Again.");
+			}
+		} while (!gameLoop);
 	}
 
 	public int displayMenu() { // display the Ozlympic's main menu and return an
@@ -66,12 +69,11 @@ public class Driver {
 				if (option >= 1 && option <= 6) {
 					System.out.println("");
 				} else {
-					System.out.println("Please insert a valid input!");
-					System.out.println("");
+					System.out.println("\nPlease insert a valid input!" + "\n");
 					validInput = false;
 				}
 			} catch (Exception e) {
-				System.out.println("Not a valid Input. Please try again!");
+				System.out.println("\nNot a valid Input. Please try again!" + "\n");
 				System.out.println("");
 				validInput = false;
 			}

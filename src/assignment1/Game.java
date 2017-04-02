@@ -3,31 +3,11 @@ package assignment1;
 import java.util.Scanner;
 
 public class Game {
+	
+	private ParticipantsDatabase PD = new ParticipantsDatabase();
 
-	private int raceID = 0;
-	
-	private ParticipantsDatabase pd = new ParticipantsDatabase();
-	
-	public Game(int raceID){
-		this.raceID = raceID;
-	}
-
-	public int getRaceID(){
-		return raceID;
-	}
-	
-	public void setRaceID(int raceID) {
-		this.raceID = raceID;
-	}
-	
-	public String generateRaceID(int option){
-		if (option == 1){
-			
-		}
-		return null;
-	}
-	
 	public int gameSelect() {
+		int gameSelectInput = 0;
 		boolean validInput = false;
 
 		do {
@@ -40,9 +20,9 @@ public class Game {
 
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
-				raceID = scanner.nextInt(); // user insert input
-				
-				if (raceID == 1 || raceID ==2 || raceID ==3) {
+				gameSelectInput = scanner.nextInt(); // user insert input
+
+				if (gameSelectInput == 1 || gameSelectInput == 2 || gameSelectInput == 3) {
 					System.out.println("");
 				} else {
 					System.out.println("Please insert a valid input!");
@@ -56,25 +36,24 @@ public class Game {
 			}
 		} while (!validInput);
 
-		return raceID;
+		return gameSelectInput;
 	}
 
-	public int gamePrediction() {
-		int userPredict = 0;
+	public void gamePrediction(int gameType) {
 		boolean validInput = false;
-		
-		pd.printAthletes(raceID);
+
+		PD.printAthletes(gameType);
 		do {
 			try {
 				System.out.println("Please predict the winner by entering the athlete's ID: ");
 				Scanner scanner = new Scanner(System.in);
-				userPredict = scanner.nextInt();
+				int userPredict = scanner.nextInt();
+				System.out.println(userPredict);
 			} catch (Exception e) {
 				System.out.println("Please insert valid athlete's ID!");
 			}
 		} while (!validInput);
 
-		return userPredict;
 	}
 
 	public void gameStart() {
@@ -90,5 +69,5 @@ public class Game {
 		System.out.println("displayAthletePoints");
 
 	}
-	
+
 }
