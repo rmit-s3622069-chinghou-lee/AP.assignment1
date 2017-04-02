@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class Race extends Game {
 
+	public Race(int raceID, int raceType, int minAthlete, int maxAthlete, int competeTime) {
+		this.minAthlete = minAthlete;
+		this.maxAthlete = maxAthlete;
+		this.competeTime = competeTime;
+	}
+
 	private int minTime;
 	private int maxTime;
 	private int competeTime;
@@ -12,14 +18,6 @@ public class Race extends Game {
 
 	private ArrayList<Race> raceID = new ArrayList<Race>();
 	private Driver driver = new Driver();
-
-	public Race(int raceID, int minAthlete, int maxAthlete, int competeTime) {
-		super(raceID);
-		this.minAthlete = minAthlete;
-		this.maxAthlete = maxAthlete;
-		this.competeTime = competeTime;
-	}
-	
 
 	public int raceSwim(String raceType) {
 		// generate
