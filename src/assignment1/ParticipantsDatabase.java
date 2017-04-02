@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 public class ParticipantsDatabase {
 
-	private ArrayList<Participant> participant = new ArrayList<Participant>();
-
-	private void addParticipant() {
+	private ArrayList<Participant> participant() {
+		ArrayList<Participant> participant = new ArrayList<Participant>();
 		participant.add(new Swimmer("SW01", "Michael", 30, "TAS", "Swimmer"));
 		participant.add(new Swimmer("SW02", "Ryan", 32, "NSW", "Swimmer"));
 		participant.add(new Swimmer("SW03", "Ian", 27, "NT", "Swimmer"));
@@ -31,49 +30,91 @@ public class ParticipantsDatabase {
 		participant.add(new Official("OF02", "Walt", 45, "TAS", "Referee"));
 		participant.add(new Official("OF03", "Jeff", 40, "NSW", "Referee"));
 		participant.add(new Official("OF04", "Gene", 35, "NT", "Referee"));
-	}
-
-	public ArrayList getParticipant() {
-		addParticipant();
 		return participant;
-		// addParticipant();
 	}
 
-	public void printAthletes(int gameType) {
-		getParticipant();
-		for (int i = 0; i < participant.size(); i++) {
-			String checkType = participant.get(i).getType();
-			String id = participant.get(i).getID();
-			String name = participant.get(i).getName();
-			int age = participant.get(i).getAge();
-			String state = participant.get(i).getState();
-			String type = participant.get(i).getType();
+	public ArrayList<Participant> getParticipant() {
+		return participant();
+	}
 
-			if (gameType == 1 && checkType.equals("Swimmer")) {
-				System.out.println(id + name + age + state + type);
-			} else if (gameType == 2 && checkType.equals("Runner")) {
-				System.out.println(id + name + age + state + type);
-			} else if (gameType == 3 && checkType.equals("Cyclist")) {
-				System.out.println(id + name + age + state + type);
+	public String getAthleteID(int raceType) {
+		for (int i = 0; i < 1; i++) {
+			String checkType = getParticipant().get(i).getType();
+			String ID = getParticipant().get(i).getID();
+			if (raceType == 1 && checkType.equals("Swimmer")) {
+				return ID;
+			} else if (raceType == 2 && checkType.equals("Runner")) {
+				return ID;
+			} else if (raceType == 3 && checkType.equals("Cyclist")) {
+				return ID;
+			} else {
+				System.out.println("There is no race selected!");
+			}
+		}
+		return null;
+	}
+
+	public void printGameSelect(int raceType) {
+		for (int i = 0; i < 1; i++) {
+			String checkType = getParticipant().get(i).getType();
+			if (raceType == 1 && checkType.equals("Swimmer")) {
+				System.out.println("No." + "\t" + "Swimmer ID" + "\t" + "Swimmer Name" + "\t" + "Swimmer Age" + "\t"
+						+ "Swimmer State" + "\t");
+
+			} else if (raceType == 2 && checkType.equals("Runner")) {
+				System.out.println("No." + "\t" + "Runner ID" + "\t" + "Runner Name" + "\t" + "Runner Age" + "\t"
+						+ "Runner State" + "\t");
+
+			} else if (raceType == 3 && checkType.equals("Cyclist")) {
+				System.out.println("No." + "\t" + "Cyclist ID" + "\t" + "Cyclist Name" + "\t" + "Cyclist Age" + "\t"
+						+ "Cyclist State" + "\t");
+
+			} else {
+				System.out.println("Invalid Menu!");
+			}
+		}
+
+		for (int i = 0; i < getParticipant().size(); i++) {
+			String checkType = getParticipant().get(i).getType();
+			String id = getParticipant().get(i).getID();
+			String name = getParticipant().get(i).getName();
+			int age = getParticipant().get(i).getAge();
+			String state = getParticipant().get(i).getState();
+
+			if (raceType == 1 && checkType.equals("Swimmer")) {
+				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
+			} else if (raceType == 2 && checkType.equals("Runner")) {
+				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
+			} else if (raceType == 3 && checkType.equals("Cyclist")) {
+				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
+			} else {
+				System.out.println("Invalid Athletes!");
 			}
 		}
 	}
 }
 
-/*
- * public void printAllParticipant() { addParticipant(); for (int i = 0; i <
- * participant.size(); i++) { String id = participant.get(i).getID(); String
- * name = participant.get(i).getName(); int age = participant.get(i).getAge();
- * String state = participant.get(i).getState(); String athleteType =
- * participant.get(i).getType(); System.out.println("ID = " + id + " name = " +
- * name + " age = " + age + " state = " + state + " athlete type = " +
- * athleteType);
- */
+/*	public String getAthletes(int raceType) {
+		for (int i = 0; i < getParticipant().size(); i++) {
+			String checkType = getParticipant().get(i).getType();
+			String id = getParticipant().get(i).getID();
+			String name = getParticipant().get(i).getName();
+			int age = getParticipant().get(i).getAge();
+			String state = getParticipant().get(i).getState();
 
-/*
- * public Participant getParticipantType(String userType) {
- * 
- * for (Participant participant : participant) { if (participant.getType() ==
- * userType) participant.forEach(System.out::println) return participant; }
- * return null; }
- */
+			if (raceType == 1 && checkType.equals("Swimmer")) {
+				return i + id + name + age + state;
+				break;
+			} else if (raceType == 2 && checkType.equals("Runner")) {
+				return i + id + name + age + state;
+				break;
+			} else if (raceType == 3 && checkType.equals("Cyclist")) {
+				return i + id + name + age + state;
+				break;
+			} else {
+				System.out.println("Invalid Athletes!");
+			}
+		}
+		return i + id + name + age + state;
+	}
+}*/

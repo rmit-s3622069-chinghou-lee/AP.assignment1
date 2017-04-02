@@ -1,5 +1,6 @@
 package assignment1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver {
@@ -18,16 +19,21 @@ public class Driver {
 		boolean gameLoop = false;
 
 		Game Game = new Game();
+		ParticipantsDatabase PD = new ParticipantsDatabase();
+		// Participant Participant;
 
 		do {
 			int gameOption = displayMenu();
+
 			switch (gameOption) {
 			case gameSelect:
 				raceType = Game.gameSelect();
+				Game.generateGameRound(raceType);
 				gameLoop = false;
 				break;
 			case gamePrediction:
 				Game.gamePrediction(raceType);
+				gameLoop = false;
 				break;
 			case gameStart:
 				Game.gameStart();

@@ -1,11 +1,43 @@
 package assignment1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-	
-	private ParticipantsDatabase PD = new ParticipantsDatabase();
 
+	private ParticipantsDatabase PD = new ParticipantsDatabase();
+	private Race Race;
+
+	public int generateGameRound(int raceType) {  
+		boolean gameRound = false;
+		int rounds = 0; // not looping 1 -> 2
+
+		do {
+			String.format("%02d", rounds);
+			if (raceType == 1 || raceType == 2 || raceType == 3) {
+				if (raceType == 1) { // swimming
+					rounds = rounds ++;
+
+					System.out.println("S" + rounds);
+				}
+				if (raceType == 2) { // running
+					rounds += 1;
+					System.out.print("R"+ rounds);
+				}
+				if (raceType == 3) { // cycling
+					rounds += 1;
+					System.out.print("C"+ rounds);
+				}break;
+			} else if (raceType != 1 || raceType != 2 || raceType != 3) {
+				System.out.println("No game round!");
+				gameRound = false;
+			} else {
+				System.out.println("Error!");
+			}
+		} while (!gameRound);
+		return rounds;
+	}
+	
 	public int gameSelect() {
 		int gameSelectInput = 0;
 		boolean validInput = false;
@@ -39,16 +71,16 @@ public class Game {
 		return gameSelectInput;
 	}
 
-	public void gamePrediction(int gameType) {
+	public void gamePrediction(int raceType) {
 		boolean validInput = false;
-
-		PD.printAthletes(gameType);
+		
 		do {
+			PD.printGameSelect(raceType);
+			// Race.printGameSelect(raceType, PD.getParticipant()); // Can't use method?
 			try {
-				System.out.println("Please predict the winner by entering the athlete's ID: ");
+				System.out.println("\nPlease predict the winner by entering the athlete's ID: ");
 				Scanner scanner = new Scanner(System.in);
 				int userPredict = scanner.nextInt();
-				System.out.println(userPredict);
 			} catch (Exception e) {
 				System.out.println("Please insert valid athlete's ID!");
 			}
@@ -69,5 +101,7 @@ public class Game {
 		System.out.println("displayAthletePoints");
 
 	}
+
+
 
 }
