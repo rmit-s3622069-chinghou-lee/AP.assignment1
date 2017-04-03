@@ -2,7 +2,7 @@ package assignment1;
 
 import java.util.ArrayList;
 
-public class ParticipantsDatabase {
+public class Database {
 
 	private ArrayList<Participant> participant() {
 		ArrayList<Participant> participant = new ArrayList<Participant>();
@@ -82,13 +82,14 @@ public class ParticipantsDatabase {
 			String state = getParticipant().get(i).getState();
 
 			if (raceType == 1 && checkType.equals("Swimmer")) {
-				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
+				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state + checkType);
 			} else if (raceType == 2 && checkType.equals("Runner")) {
-				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
+				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state + checkType);
 			} else if (raceType == 3 && checkType.equals("Cyclist")) {
-				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
+				System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state + checkType);
 			} else {
-				System.out.println("Invalid Athletes!");
+				 // System.out.println("Empty Athletes!"); // to validate the athlete print list
+			break;
 			}
 		}
 	}

@@ -19,7 +19,7 @@ public class Driver {
 		boolean gameLoop = false;
 
 		Game Game = new Game();
-		ParticipantsDatabase PD = new ParticipantsDatabase();
+		Database PD = new Database();
 		// Participant Participant;
 
 		do {

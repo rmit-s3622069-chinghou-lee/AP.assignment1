@@ -10,7 +10,7 @@ public class Race extends Game {
 	private int minAthlete = 4;
 	private int maxAthlete = 8;
 
-	private ParticipantsDatabase PD = new ParticipantsDatabase();
+	private Database Database = new Database();
 
 	private Game Game = new Game();
 

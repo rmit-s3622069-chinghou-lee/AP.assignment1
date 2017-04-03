@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 public class Game {
 
-	private ParticipantsDatabase PD = new ParticipantsDatabase();
+	private Database Database = new Database();
 	private Race Race;
 
 	public int generateGameRound(int raceType) {  
 		boolean gameRound = false;
-		int rounds = 0; // not looping 1 -> 2
+		int rounds = 01; // not looping 1 -> 2
 
 		do {
 			String.format("%02d", rounds);
@@ -75,7 +75,7 @@ public class Game {
 		boolean validInput = false;
 		
 		do {
-			PD.printGameSelect(raceType);
+			Database.printGameSelect(raceType);
 			// Race.printGameSelect(raceType, PD.getParticipant()); // Can't use method?
 			try {
 				System.out.println("\nPlease predict the winner by entering the athlete's ID: ");
