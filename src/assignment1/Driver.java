@@ -32,7 +32,7 @@ public class Driver {
 				gameLoop = false;
 				break;
 			case gamePrediction:
-				Game.gamePrediction(raceType);
+				Game.getUserPrediction(raceType);
 				gameLoop = false;
 				break;
 			case gameStart:

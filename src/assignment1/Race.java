@@ -21,6 +21,20 @@ public class Race extends Game {
 		this.gameScore = gameScore;
 
 	}
+	
+	public void getAthleteID(int raceType) {
+		Database.getParticipant();
+		for (int i = 0; i < 1; i++) {
+			String checkType = Database.getParticipant().get(i).getType();
+			if (raceType == 1 && checkType.equals("Swimmer")) {
+			} else if (raceType == 2 && checkType.equals("Runner")) {
+			} else if (raceType == 3 && checkType.equals("Cyclist")) {
+			} else {
+				System.out.println("There is no race selected!");
+				break;
+			}
+		}
+	}
 
 	public int compete(int raceType) {
 		// raceType determine athlete and generate random time
@@ -28,48 +42,6 @@ public class Race extends Game {
 		return athleteSelect;
 
 	}
-
-/*	 public void printGameSelect(int raceType, ArrayList<Participant>
-	 Participant) {
-	 for (int i = 0; i < 1; i++) {
-	 String checkType = Participant.get(i).getType();
-	 if (raceType == 1 && checkType.equals("Swimmer")) {
-	 System.out.println("No." + "\t" + "Swimmer ID" + "\t" + "Swimmer Name" +
-	 "\t" + "Swimmer Age" + "\t"
-	 + "Swimmer State" + "\t");
-	
-	 } else if (raceType == 2 && checkType.equals("Runner")) {
-	 System.out.println("No." + "\t" + "Runner ID" + "\t" + "Runner Name" +
-	 "\t" + "Runner Age" + "\t"
-	 + "Runner State" + "\t");
-	
-	 } else if (raceType == 3 && checkType.equals("Cyclist")) {
-	 System.out.println("No." + "\t" + "Cyclist ID" + "\t" + "Cyclist Name" +
-	 "\t" + "Cyclist Age" + "\t"
-	 + "Cyclist State" + "\t");
-	
-	 }
-	 }
-	
-	 for (int i = 1; i < Participant.size(); i++) {
-	 String id = Participant.get(i).getID();
-	 String name = Participant.get(i).getName();
-	 int age = Participant.get(i).getAge();
-	 String state = Participant.get(i).getState();
-	 String checkType = Participant.get(i).getType();
-	
-	 if (raceType == 1 && checkType.equals("Swimmer")) {
-	 System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age
-	 + "\t" + "\t" + state);
-	 } else if (raceType == 2 && checkType.equals("Runner")) {
-	 System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age
-	 + "\t" + "\t" + state);
-	 } else if (raceType == 3 && checkType.equals("Cyclist")) {
-	 System.out.println(i + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age
-	 + "\t" + "\t" + state);
-	 }
-	 }
-	 }*/
 
 /*	public ArrayList<Race> AthleteResults() {
 		ArrayList<Race> athleteResults = new ArrayList<Race>();
