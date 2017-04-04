@@ -25,7 +25,6 @@ public class Driver {
 			switch (gameOption) {
 			case gameSelect:
 				raceType = Game.gameSelect();
-				Game.addGameRound(raceType);
 				gameLoop = false;
 				break;
 			case gamePrediction:
@@ -69,12 +68,12 @@ public class Driver {
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				option = scanner.nextInt(); // user insert input
-				if (option == 1 && raceType >= 0){
+				if (option == 1 && raceType >= 0){ // initialize game to run && re-run the game
 					System.out.println("");
-				}else if (option >= 2 && raceType == 0) {
+				}else if (option >= 2 && raceType == 0) { //no game run yet
 					gameRun();
 					break;
-				}else if(option >= 2 && raceType >= 1){
+				}else if(option >= 2 && raceType >= 1){ // after initialize game
 					System.out.println("");
 				} else {
 					System.out.println("\nPlease insert a valid input!\n");
