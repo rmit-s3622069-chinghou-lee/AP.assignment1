@@ -1,13 +1,18 @@
 package assignment1;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
+	private int gameRounds;
 
-	ArrayList<Participant> Participant = new ArrayList<Participant>();
 	private Database Database = new Database();
-	private Race Race;
+
+	private ArrayList<Race> Race = new ArrayList<Race>();
+	ArrayList<Participant> Participant = Database.getAllParticipants();
+
+	public int getGameRounds() {
+		return gameRounds;
+	}
 
 	public int gameSelect() {
 		int gameSelectInput = 0;
@@ -16,25 +21,28 @@ public class Game {
 		do {
 			validInput = true;
 			try {
-				String menu[] = { "Select a sport to play: ", "1. Swimming race", "2. Running race",
-						"3. Cycling race" };
+				String menu[] = { "Select a sport to play: ", "========================", "1. Swimming race",
+						"2. Running race", "3. Cycling race" };
 				for (int i = 0; i < menu.length; i++)
-					System.out.println(menu[i]); // display the main menu
+					System.out.println(menu[i]); // display the sport selection
+													// menu
 
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				gameSelectInput = scanner.nextInt(); // user insert input
 
-				if (gameSelectInput == 1 || gameSelectInput == 2 || gameSelectInput == 3) {
-					System.out.println("");
+				if (gameSelectInput == 1) {
+					System.out.println("\nCurrent sport: Swimming Race\n");
+				} else if (gameSelectInput == 2) {
+					System.out.println("\nCurrent sport: Running Race\n");
+				} else if (gameSelectInput == 3) {
+					System.out.println("\nCurrent sport: Cycling Race\n");
 				} else {
-					System.out.println("Please insert a valid input!");
-					System.out.println("");
+					System.out.println("\nPlease insert a valid input!\n");
 					validInput = false;
 				}
 			} catch (Exception e) {
-				System.out.println("Not a valid Input. Please try again!");
-				System.out.println("");
+				System.out.println("\nNot a valid Input. Please try again!\n");
 				validInput = false;
 			}
 		} while (!validInput);
@@ -42,99 +50,91 @@ public class Game {
 		return gameSelectInput;
 	}
 
-	public int generateGameRound(int raceType) {
+	public int addGameRound(int raceType) {
 		boolean gameRound = false;
-		int rounds = 01; // not looping 1 -> 2
 
 		do {
-			String.format("%02d", rounds);
+			String.format("%02d", gameRounds);
 			if (raceType == 1 || raceType == 2 || raceType == 3) {
 				if (raceType == 1) { // swimming
-					rounds = rounds++;
-
-					System.out.println("S" + rounds);
+					gameRounds += 1;
+					Race.add(null);
+					// System.out.println("S" + gameRounds + ": Swimming Round "
+					// + gameRounds);
 				}
 				if (raceType == 2) { // running
-					rounds += 1;
-					System.out.print("R" + rounds);
+					gameRounds += 1;
+					// System.out.print("R" + rounds + ": Running Round " +
+					// rounds);
 				}
 				if (raceType == 3) { // cycling
-					rounds += 1;
-					System.out.print("C" + rounds);
+					gameRounds += 1;
+					// System.out.print("C" + rounds + ": Cycling Round " +
+					// rounds);
 				}
 				break;
-			} else if (raceType != 1 || raceType != 2 || raceType != 3) {
-				System.out.println("No game round!");
-				gameRound = false;
 			} else {
 				System.out.println("Error!");
-				break;
+				gameRound = false;
 			}
 		} while (!gameRound);
-		return rounds;
+		return gameRounds;
 	}
 
 	public int gamePrediction(int raceType) {
 		int userPredict = 0;
 		boolean validInput = false;
 
+		printGameSelectList(raceType);
+		printGameSelectAthleteList(raceType);
 		do {
-			printGameSelectList(raceType);
-			printGameSelectAthleteList(raceType);
+			validInput = true;
 			try {
 				System.out.println("\nPlease predict the winner by entering the athlete's ID: ");
 				Scanner scanner = new Scanner(System.in);
 				userPredict = scanner.nextInt();
 			} catch (Exception e) {
 				System.out.println("Please insert valid athlete's ID!");
-				validInput=false;
+				validInput = false;
 			}
+			break;
 		} while (!validInput);
 		return userPredict;
 
 	}
 
 	public void printGameSelectList(int raceType) {
-		Database.getParticipant();
-		for (int i = 0; i < 1; i++) {
-			String checkType = Database.getParticipant().get(i).getType();
-			if (raceType == 1 && checkType.equals("Swimmer")) {
-				System.out.println("No." + "\t" + "Swimmer ID" + "\t" + "Swimmer Name" + "\t" + "Swimmer Age" + "\t"
-						+ "Swimmer State" + "\t");
-
-			} else if (raceType == 2 && checkType.equals("Runner")) {
-				System.out.println("No." + "\t" + "Runner ID" + "\t" + "Runner Name" + "\t" + "Runner Age" + "\t"
-						+ "Runner State" + "\t");
-
-			} else if (raceType == 3 && checkType.equals("Cyclist")) {
-				System.out.println("No." + "\t" + "Cyclist ID" + "\t" + "Cyclist Name" + "\t" + "Cyclist Age" + "\t"
-						+ "Cyclist State" + "\t");
-
-			} else {
-				System.out.println("Invalid Menu!");
-				break;
-			}
+		boolean validInput = false;
+		do{
+		if (raceType >= 1 && raceType <= 3) {
+			System.out.println("No." + "\t" + "Athlete ID" + "\t" + "Athlete Name" + "\t" + "Athlete Age" + "\t"
+					+ "Athlete State" + "\t");
+			break;
+		}else if(raceType <= 1 && raceType >= 3){
+			
+		} else {
+			System.out.println("Please selct a game to run!");
+			break;
 		}
+		}while (!validInput);
 	}
 
 	public void printGameSelectAthleteList(int raceType) {
-		Database.getParticipant();
-		for (int i = 0, No = 1; i < Database.getParticipant().size(); i++, No++) {
-			String checkType = Database.getParticipant().get(i).getType();
-			String id = Database.getParticipant().get(i).getID();
-			String name = Database.getParticipant().get(i).getName();
-			int age = Database.getParticipant().get(i).getAge();
-			String state = Database.getParticipant().get(i).getState();
+
+		for (int i = 0, No = 1; i < Database.getAllParticipants().size(); i++, No++) {
+			String checkType = Database.getAllParticipants().get(i).getType();
+			String id = Database.getAllParticipants().get(i).getID();
+			String name = Database.getAllParticipants().get(i).getName();
+			int age = Database.getAllParticipants().get(i).getAge();
+			String state = Database.getAllParticipants().get(i).getState();
 
 			if (raceType == 1 && checkType.equals("Swimmer")) {
-				System.out.println(
-						No + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state + checkType);
+				Database.getSwimmer();
+				System.out.println(No + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
 			} else if (raceType == 2 && checkType.equals("Runner")) {
-				System.out.println(
-						No + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state + checkType);
+				System.out.println(No + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
 			} else if (raceType == 3 && checkType.equals("Cyclist")) {
-				System.out.println(
-						No + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state + checkType);
+				System.out.println(No + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
 			} else {
 				// System.out.println("Empty Athletes!"); // to validate the
 				// athlete print list
@@ -143,13 +143,9 @@ public class Game {
 		}
 	}
 
-	public int getUserPrediction(int raceType) {
-		int userPrediction = gamePrediction(raceType);
-		return userPrediction;
-
-	}
-
 	public void gameStart() {
+		Race = new ArrayList<Race>();
+		Race.add(null);
 		System.out.println("gameStart");
 
 	}

@@ -1,9 +1,9 @@
 package assignment1;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver {
+	int raceType = 0;
 
 	// constants corresponding to main menu options
 	private static final int gameSelect = 1;
@@ -15,24 +15,21 @@ public class Driver {
 
 	public void gameRun() {
 
-		int raceType = 0;
+
 		boolean gameLoop = false;
 
-		Game Game = new Game();
-		Database PD = new Database();
-		// Participant Participant;
-
 		do {
-			int gameOption = displayMenu();
+			Game Game = new Game();
+			int gameOption = displayMenu(raceType);
 
 			switch (gameOption) {
 			case gameSelect:
 				raceType = Game.gameSelect();
-				Game.generateGameRound(raceType);
+				Game.addGameRound(raceType);
 				gameLoop = false;
 				break;
 			case gamePrediction:
-				Game.getUserPrediction(raceType);
+				Game.gamePrediction(raceType);
 				gameLoop = false;
 				break;
 			case gameStart:
@@ -54,7 +51,7 @@ public class Driver {
 		} while (!gameLoop);
 	}
 
-	public int displayMenu() { // display the Ozlympic's main menu and return an
+	public int displayMenu(int raceType) { // display the Ozlympic's main menu and return an
 								// input selection
 		int option = 0;
 		boolean validInput = false;
@@ -72,15 +69,19 @@ public class Driver {
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				option = scanner.nextInt(); // user insert input
-				if (option >= 1 && option <= 6) {
+				if (option == 1 && raceType >= 0){
+					System.out.println("");
+				}else if (option >= 2 && raceType == 0) {
+					gameRun();
+					break;
+				}else if(option >= 2 && raceType >= 1){
 					System.out.println("");
 				} else {
-					System.out.println("\nPlease insert a valid input!" + "\n");
+					System.out.println("\nPlease insert a valid input!\n");
 					validInput = false;
 				}
 			} catch (Exception e) {
-				System.out.println("\nNot a valid Input. Please try again!" + "\n");
-				System.out.println("");
+				System.out.println("\nNot a valid Input. Please try again!\n");
 				validInput = false;
 			}
 		} while (!validInput);

@@ -1,7 +1,5 @@
 package assignment1;
 
-import java.util.ArrayList;
-
 public class Runner extends Athlete {
 		public double minTime = 10;
 		public double maxTime = 20;
