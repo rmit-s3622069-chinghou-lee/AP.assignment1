@@ -1,10 +1,10 @@
 package assignment1;
 
-public class Runner extends Athlete {
+public class Sprinter extends Athlete {
 		public double minTime = 10;
 		public double maxTime = 20;
 		
-		public Runner(String id, String name, int age, String state,String type) {
+		public Sprinter(String id, String name, int age, String state,String type) {
 			super(id, name, age, state, type);
 		}
 		

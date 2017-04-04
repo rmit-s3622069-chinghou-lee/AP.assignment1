@@ -3,15 +3,30 @@ package assignment1;
 import java.util.ArrayList;
 
 public class Cyclist extends Athlete {
+	private String cyclistID;
+	private String cyclistName;
+	private int cyclistAge;
+	private String cyclistState;
+	private String sportType;
+
 	public double minTime = 500;
 	public double maxTime = 800;
-	
-	public Cyclist(String id, String name, int age, String state,String type) {
-		super(id, name, age, state, type);
+
+	public Cyclist(String athleteID, String athleteName, int athleteAge, String athleteState, String athleteType) {
+		super(athleteID, athleteName, athleteAge, athleteState, athleteType);
+		this.cyclistID = athleteID;
+		this.cyclistName = athleteName;
+		this.cyclistAge = athleteAge;
+		this.cyclistState = athleteState;
+		this.sportType = sportType;
 	}
-	
-	public double compete(){
-		double randomNum = Math.random()*(maxTime - minTime +1) + minTime;
+
+	public String toString() {
+		return cyclistID + cyclistName + cyclistAge + cyclistState + sportType;
+	}
+
+	public double compete() {
+		double randomNum = Math.random() * (maxTime - minTime + 1) + minTime;
 		return randomNum;
 	}
 

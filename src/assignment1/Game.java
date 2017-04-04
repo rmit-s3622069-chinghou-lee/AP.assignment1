@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Game {
 	private int gameRounds;
-	private int gameID;
 	private int participantJoin;
 	final static int minAthlete = 4;
 	final static int maxAthlete = 8;
@@ -13,12 +12,45 @@ public class Game {
 
 	private ArrayList<Participant> Athlete = Database.getAllParticipants();;
 	private ArrayList<Participant> Participant;
-	private ArrayList<Race> Race = new ArrayList<Race>();
-
+	private ArrayList<Participant> GameParticipant;
+	private ArrayList<Race> Race;
+	
+	public ArrayList<Race> setRacePoints(){
+		Race.get(0).setGameRounds(5);
+		Race.get(1).setGameRounds(2);
+		Race.get(2).setGameRounds(1);
+		return Race;
+		
+	}
+	
 	public void gameStart(int raceType) {
-		Participant = Participant(raceType);
-		// System.out.println("gameStart");
+		loadParticipant(raceType);
+		
 
+	}
+	
+	public void loadParticipant(int raceType){
+		Participant = Participant(raceType);
+		Race = new ArrayList<Race>();
+		if (raceType ==1){
+			Swimmer s = new Swimmer(null, null, 0, null, null);
+			for (int i = 0; i <Participant.size();i++){
+				Race.add(new Race(gameRounds, Participant.get(i), Database.getOfficial().get(i), s.compete(), 0));
+				//System.out.println(gameRounds + Participant.toString() + Database.getOfficial().get(i) + s.compete()+ 0);
+			}Race.forEach(System.out::println);			
+		}else if (raceType == 2){
+				Sprinter r = new Sprinter(null, null, 0, null, null);
+				for (int i = 0; i <Participant.size();i++){
+					Race.add(new Race(gameRounds, Participant.get(i), Database.getOfficial().get(i), r.compete(), 0));
+				}
+		}else if (raceType == 3){
+			Cyclist c = new Cyclist(null, null, 0, null, null);
+			for (int i = 0; i <Participant.size();i++){
+				Race.add(new Race(gameRounds, Participant.get(i), Database.getOfficial().get(i), c.compete(), 0));
+			}
+		}else{
+			System.out.println("Please select a valid game to run!");
+		}
 	}
 
 	public ArrayList<Participant> Participant(int raceType) {

@@ -5,12 +5,12 @@ public class Race extends Game {
 	private int gameRounds;
 	private Participant participant;
 	private Official official;
-	private int completeTime;
+	private double completeTime;
 	private int athleteScore;
 
 	private Database Database = new Database();
 
-	public Race(int gameRounds, Participant participant, Official official, int completeTime, int athleteScore) {
+	public Race(int gameRounds, Participant participant, Official official, double completeTime, int athleteScore) {
 		this.gameRounds = gameRounds;
 		this.participant = participant;
 		this.official = official;
@@ -42,12 +42,17 @@ public class Race extends Game {
 		this.official = official;
 	}
 
-	public int getCompleteTime() {
+	public double getCompleteTime() {
 		return completeTime;
 	}
 
 	public int getAthleteScore() {
 		return athleteScore;
+	}
+	
+	public String toSring(){
+		return gameRounds + participant.getName() + official + completeTime + athleteScore;
+		
 	}
 
 }

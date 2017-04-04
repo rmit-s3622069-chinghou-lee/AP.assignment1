@@ -17,17 +17,17 @@ public class Database {
 		return Swimmer();
 	}
 
-	private ArrayList<Runner> Runner() {
-		ArrayList<Runner> runner = new ArrayList<Runner>();
-		runner.add(new Runner("RU01", "Haile", 35, "NT", "Runner"));
-		runner.add(new Runner("RU02", "Paula", 30, "NSW", "Runner"));
-		runner.add(new Runner("RU03", "Joan", 32, "Queensland", "Runner"));
-		runner.add(new Runner("RU04", "Meb", 27, "VIC", "Runner"));
-		return runner;
+	private ArrayList<Sprinter> Sprinter() {
+		ArrayList<Sprinter> sprinter = new ArrayList<Sprinter>();
+		sprinter.add(new Sprinter("RU01", "Haile", 35, "NT", "Runner"));
+		sprinter.add(new Sprinter("RU02", "Paula", 30, "NSW", "Runner"));
+		sprinter.add(new Sprinter("RU03", "Joan", 32, "Queensland", "Runner"));
+		sprinter.add(new Sprinter("RU04", "Meb", 27, "VIC", "Runner"));
+		return sprinter;
 	}
 
-	public ArrayList<Runner> getRunner() {
-		return Runner();
+	public ArrayList<Sprinter> getRunner() {
+		return Sprinter();
 	}
 
 	private ArrayList<Cyclist> Cyclist() {
