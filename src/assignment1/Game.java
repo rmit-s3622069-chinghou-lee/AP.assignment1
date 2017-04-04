@@ -4,14 +4,47 @@ import java.util.*;
 
 public class Game {
 	private int gameRounds;
+	private int gameID;
+	private int participantJoin;
+	final static int minAthlete = 4;
+	final static int maxAthlete = 8;
 
 	private Database Database = new Database();
 
+	private ArrayList<Participant> Athlete = Database.getAllParticipants();;
+	private ArrayList<Participant> Participant;
 	private ArrayList<Race> Race = new ArrayList<Race>();
-	ArrayList<Participant> Participant = Database.getAllParticipants();
 
-	public int getGameRounds() {
-		return gameRounds;
+	public void gameStart(int raceType) {
+		Participant = Participant(raceType);
+		// System.out.println("gameStart");
+
+	}
+
+	public ArrayList<Participant> Participant(int raceType) {
+		Participant = new ArrayList<Participant>();
+		if (raceType == 1) { // swimming
+			Participant.addAll(Database.getSwimmer());
+			Participant.addAll(Database.getSuperAthlete());
+		} else if (raceType == 2) { // runner
+			Participant.addAll(Database.getRunner());
+			Participant.addAll(Database.getSuperAthlete());
+		} else if (raceType == 3) {
+			Participant.addAll(Database.getCyclist());
+			Participant.addAll(Database.getSuperAthlete());
+		} else {
+			participantCheck();
+		}
+		return Participant;
+	}
+
+	public void participantCheck() {
+		if (Participant.size() < minAthlete || Participant.size() > maxAthlete) {
+			System.out.println("\nThere is not enough athlete to run the game!");
+			System.out.println("Please pick another game\n");
+			Participant.clear();
+			gameSelect();
+		}
 	}
 
 	public int gameSelect() {
@@ -25,7 +58,7 @@ public class Game {
 						"2. Running race", "3. Cycling race" };
 				for (int i = 0; i < menu.length; i++)
 					System.out.println(menu[i]); // display the sport selection
-													// menu
+				// menu
 
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
@@ -57,13 +90,12 @@ public class Game {
 		boolean gameRound = false;
 
 		do {
-			String.format("%02d", gameRounds);
 			if (raceType >= 1 && raceType <= 3) {
 				gameRounds += 1;
 				break;
 			} else {
 				System.out.println("\nError\n!");
-				gameSelect();
+				gameSelect(); // return to Menu
 			}
 		} while (!gameRound);
 		return gameRounds;
@@ -95,12 +127,12 @@ public class Game {
 		System.out.println("No." + "\t" + "Athlete ID" + "\t" + "Athlete Name" + "\t" + "Athlete Age" + "\t"
 				+ "Athlete State" + "\t");
 		do {
-			for (int i = 0, No = 1; i < Database.getAllParticipants().size(); i++, No++) {
-				String checkType = Database.getAllParticipants().get(i).getType();
-				String id = Database.getAllParticipants().get(i).getID();
-				String name = Database.getAllParticipants().get(i).getName();
-				int age = Database.getAllParticipants().get(i).getAge();
-				String state = Database.getAllParticipants().get(i).getState();
+			for (int i = 0, No = 1; i < Athlete.size(); i++, No++) {
+				String checkType = Athlete.get(i).getType();
+				String id = Athlete.get(i).getID();
+				String name = Athlete.get(i).getName();
+				int age = Athlete.get(i).getAge();
+				String state = Athlete.get(i).getState();
 
 				if (raceType == 1 && checkType.equals("Swimmer")) {
 					System.out.println(No + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
@@ -109,17 +141,10 @@ public class Game {
 				} else if (raceType == 3 && checkType.equals("Cyclist")) {
 					System.out.println(No + "\t" + id + "\t" + "\t" + name + "\t" + "\t" + age + "\t" + "\t" + state);
 				} else {
-					printLoop=true;
+					printLoop = true; // end the loop
 				}
 			}
 		} while (!printLoop);
-	}
-
-	public void gameStart() {
-		Race = new ArrayList<Race>();
-		Race.add(null);
-		System.out.println("gameStart");
-
 	}
 
 	public void displayFinalResult() {

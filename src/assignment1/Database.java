@@ -55,7 +55,7 @@ public class Database {
 	public ArrayList<SuperAthlete> getSuperAthlete() {
 		return SuperAthlete();
 	}
-	
+
 	private ArrayList<Official> Official() {
 		ArrayList<Official> official = new ArrayList<Official>();
 		official.add(new Official("OF01", "Ed", 47, "VIC", "Referee"));
@@ -64,11 +64,11 @@ public class Database {
 		official.add(new Official("OF04", "Gene", 35, "NT", "Referee"));
 		return official;
 	}
-	
+
 	public ArrayList<Official> getOfficial() {
 		return Official();
 	}
-	
+
 	private ArrayList<Participant> participant() {
 		ArrayList<Participant> participant = new ArrayList<Participant>();
 		participant.addAll(getSwimmer());

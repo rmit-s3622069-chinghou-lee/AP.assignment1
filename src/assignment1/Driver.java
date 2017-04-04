@@ -15,7 +15,6 @@ public class Driver {
 
 	public void gameRun() {
 
-
 		boolean gameLoop = false;
 
 		do {
@@ -32,7 +31,7 @@ public class Driver {
 				gameLoop = false;
 				break;
 			case gameStart:
-				Game.gameStart();
+				Game.gameStart(raceType);
 				break;
 			case displayFinalResult:
 				Game.displayFinalResult();
@@ -50,8 +49,9 @@ public class Driver {
 		} while (!gameLoop);
 	}
 
-	public int displayMenu(int raceType) { // display the Ozlympic's main menu and return an
-								// input selection
+	public int displayMenu(int raceType) { // display the Ozlympic's main menu
+											// and return an
+		// input selection
 		int option = 0;
 		boolean validInput = false;
 
@@ -68,12 +68,14 @@ public class Driver {
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				option = scanner.nextInt(); // user insert input
-				if (option == 1 && raceType >= 0){ // initialize game to run && re-run the game
+				if (option == 1 && raceType >= 0) { // initialize game to run &&
+													// re-run the game
 					System.out.println("");
-				}else if (option >= 2 && raceType == 0) { //no game run yet
+				} else if (option >= 2 && raceType == 0) { // no game run yet
 					gameRun();
 					break;
-				}else if(option >= 2 && raceType >= 1){ // after initialize game
+				} else if (option >= 2 && raceType >= 1) { // after initialize
+															// game
 					System.out.println("");
 				} else {
 					System.out.println("\nPlease insert a valid input!\n");

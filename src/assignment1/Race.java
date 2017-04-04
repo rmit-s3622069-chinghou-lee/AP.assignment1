@@ -2,7 +2,7 @@ package assignment1;
 
 public class Race extends Game {
 
-	private int athleteSelect;
+	private int gameRounds;
 	private Participant participant;
 	private Official official;
 	private int completeTime;
@@ -10,24 +10,32 @@ public class Race extends Game {
 
 	private Database Database = new Database();
 
-	public Race(int athleteSelect, Participant participant, Official official, int completeTime, int athleteScore) {
-		this.athleteSelect = athleteSelect;
+	public Race(int gameRounds, Participant participant, Official official, int completeTime, int athleteScore) {
+		this.gameRounds = gameRounds;
 		this.participant = participant;
 		this.official = official;
 		this.completeTime = completeTime;
 		this.athleteScore = athleteScore;
 	}
 
+	public int getGameRounds() {
+		return gameRounds;
+	}
+
+	public void setGameRounds(int raceType) {
+		this.gameRounds = addGameRound(raceType);
+	}
+
 	public Participant getParticipant() {
 		return participant;
 	}
 
-	public Official getOfficial() {
-		return official;
-	}
-
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
+	}
+
+	public Official getOfficial() {
+		return official;
 	}
 
 	public void setOfficial(Official official) {
@@ -40,13 +48,6 @@ public class Race extends Game {
 
 	public int getAthleteScore() {
 		return athleteScore;
-	}
-
-	public int compete(int raceType) {
-		// raceType determine athlete and generate random time
-		// for loop and return random time
-		return athleteSelect;
-
 	}
 
 }
