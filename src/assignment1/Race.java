@@ -5,12 +5,11 @@ public class Race extends Game {
 	private int gameRounds;
 	private Participant participant;
 	private Official official;
-	private double completeTime;
+	private int completeTime;
 	private int athleteScore;
+	private Athlete athlete;
 
-	private Database Database = new Database();
-
-	public Race(int gameRounds, Participant participant, Official official, double completeTime, int athleteScore) {
+	public Race(int gameRounds, Participant participant, Official official, int completeTime, int athleteScore) {
 		this.gameRounds = gameRounds;
 		this.participant = participant;
 		this.official = official;
@@ -42,36 +41,30 @@ public class Race extends Game {
 		this.official = official;
 	}
 
-	public double getCompleteTime() {
-		return completeTime;
+	public Athlete athlete() {
+		return athlete;
 	}
 
 	public double setCompleteTime(int raceType) {
-		if (raceType == 1) {
-			Swimmer s = new Swimmer(null, null, 0, null, null);
-			completeTime = s.compete(raceType);
-		} else if (raceType == 2) {
-			Sprinter r = new Sprinter(null, null, 0, null, null);
-			completeTime = r.compete(raceType);
-		} else if (raceType == 3) {
-			Cyclist c = new Cyclist(null, null, 0, null, null);
-			completeTime = c.compete(raceType);
-		}else{
+		double completeTime = 0;
+		if (raceType >= 1 && raceType <= 3) {
+			completeTime = athlete().compete(raceType);
+		} else {
 			System.out.println("Error\n");
 		}
+		return (int) completeTime;
+	}
+	
+	public int getCompleteTime(){
 		return completeTime;
 	}
 
 	public int getAthleteScore() {
 		return athleteScore;
 	}
-	
-	
 
-	public String toSring() {
-		System.out.println("Result for race: " + gameRounds);
-		System.out.println("Referee for this race is: " + official);
-		return participant.getName() + "\t" + completeTime + "\t" + athleteScore;
+	public String toString() {
+		return getParticipant().getID() + "\t" + getParticipant().getName() + "\t" + completeTime + "\t" + athleteScore;
 
 	}
 

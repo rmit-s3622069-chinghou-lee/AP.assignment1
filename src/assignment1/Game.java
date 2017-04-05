@@ -13,32 +13,12 @@ public class Game {
 	private ArrayList<Official> Official = Database.getOfficial();
 	private ArrayList<Participant> AthleteList = Database.getAllParticipants();;
 	private ArrayList<Race> raceStart;
-	
 
-	
 	public void gameStart(int raceType) {
-		
+		raceStart = storeRace(raceType);
+		for (int i = 0; i < raceStart.size(); i++)
+		System.out.println(raceStart.get(i).toString());
 	}
-	
-
-//	public ArrayList<Participant> Participant(int raceType) {
-//		Participant = new ArrayList<Participant>();
-//		if (raceType == 1) { // swimming
-//			Participant.addAll(Database.getAllParticipants());
-//			Participant.addAll(Database.getSuperAthlete());
-//		} else if (raceType == 2) { // runner
-//			Participant.addAll(Database.getRunner());
-//			Participant.addAll(Database.getSuperAthlete());
-//		} else if (raceType == 3) {
-//			Participant.addAll(Database.getCyclist());
-//			Participant.addAll(Database.getSuperAthlete());
-//		} else {
-//			participantCheck();
-//		}
-//		return Participant;
-//	}
-
-
 
 	public int gameSelect() {
 		int gameSelectInput = 0;
@@ -137,51 +117,55 @@ public class Game {
 			}
 		} while (!printLoop);
 	}
-	
-	public ArrayList<Race> storeRace(int raceType){
+
+	public ArrayList<Race> storeRace(int raceType) {
 		boolean printLoop = false;
 		raceStart = new ArrayList<Race>();
-		
+
 		do {
 			for (int i = 0, No = 1; i < AthleteList.size(); i++, No++) {
 				String checkType = AthleteList.get(i).getType();
 
 				if (raceType == 1 && checkType.equals("Swimmer")) {
-					raceStart.add(new Race(No, AthleteList.get(i), Official.get(1) ,A.compete(raceType), setRacePoints().get(i)));
+					raceStart.add(new Race(No, AthleteList.get(i), Official.get(1), i, No));
 				} else if (raceType == 2 && checkType.equals("Sprinter")) {
-					raceStart.add(new Race(No, AthleteList.get(i), null, No, No));
+					raceStart.add(new Race(No, AthleteList.get(i), Official.get(1), i, No));
 				} else if (raceType == 3 && checkType.equals("Cyclist")) {
-					raceStart.add(new Race(No, AthleteList.get(i), null, No, No));
+					raceStart.add(new Race(No, AthleteList.get(i), Official.get(1), i, No));
 				} else {
 					AthleteList.trimToSize();
 					printLoop = true; // end the loop
 				}
-			}
+			}Collections.sort(raceStart, Comparator.comparing(Race::getCompleteTime).reversed());
 		} while (!printLoop);
 		return raceStart;
 	}
-	
-	public int compareResult(int userPrediction){
-//		if(userPrediction == raceStart.get(1)){
-//			
-//		}
+
+	public int compareResult(int userPrediction) {
+		// if(userPrediction == raceStart.get(1)){
+		//
+		// }
 		return 0;
 	}
-	
-	public ArrayList<Race> setRacePoints(){
+
+	public ArrayList<Race> setRacePoints() { // not adding
 		raceStart.get(0).setGameRounds(5);
 		raceStart.get(1).setGameRounds(2);
 		raceStart.get(2).setGameRounds(1);
 		return raceStart;
-		
+
 	}
 
 	public void displayFinalResult() {
 		raceStart = new ArrayList<Race>();
+		
+		raceStart = setRacePoints();
 		for (int i = 0; i < raceStart.size(); i++) {
-		System.out.println(raceStart.get(i).toSring());
+//			System.out.println("Result for race: " + raceStart.get(i).getGameRounds());
+//			System.out.println("Referee for this race is: " + raceStart.get(i).getOfficial());
+			System.out.println(raceStart.get(i).toString());
 		}
-		//System.out.println("displayFinalResult");
+		// System.out.println("displayFinalResult");
 	}
 
 	public void displayAthletePoints() {

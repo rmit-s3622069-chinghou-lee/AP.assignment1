@@ -63,13 +63,12 @@ public class Database {
 		official.add(new Official("OF02", "Walt", 45, "TAS", "Referee"));
 		official.add(new Official("OF03", "Jeff", 40, "NSW", "Referee"));
 		official.add(new Official("OF04", "Gene", 35, "NT", "Referee"));
+		Collections.shuffle(official);
 		return official;
 	}
 
 	public ArrayList<Official> getOfficial() {
-		Collections.shuffle(Official()); // shuffle Official
-		// System.out.println(Official());
-		return getOfficial();
+		return Official();
 	}
 
 	private ArrayList<Participant> participant() {
@@ -78,7 +77,7 @@ public class Database {
 		participant.addAll(getRunner());
 		participant.addAll(getCyclist());
 		participant.addAll(getSuperAthlete());
-		// participant.addAll(getOfficial());
+		Collections.shuffle(participant);
 		return participant;
 	}
 
