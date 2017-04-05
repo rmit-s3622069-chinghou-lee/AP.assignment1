@@ -6,6 +6,6 @@ abstract public class Athlete extends Participant {
 		super(id, name, age, state, type);
 	}
 	
-	abstract public double compete();
+	abstract public double compete(int raceType);
 
 }

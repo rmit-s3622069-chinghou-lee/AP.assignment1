@@ -35,9 +35,11 @@ public class Driver {
 				break;
 			case displayFinalResult:
 				Game.displayFinalResult();
+				gameLoop = false;
 				break;
 			case displayAthletePoints:
 				Game.displayAthletePoints();
+				gameLoop = false;
 				break;
 			case gameExit:
 				System.out.println("Game Over!");

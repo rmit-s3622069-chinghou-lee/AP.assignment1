@@ -21,11 +21,11 @@ public class Cyclist extends Athlete {
 		this.sportType = sportType;
 	}
 
-	public String toString() {
-		return cyclistID + cyclistName + cyclistAge + cyclistState + sportType;
+	public String toString(){
+		return cyclistID + "\t" + "\t" + cyclistName + "\t" + "\t" + cyclistAge + "\t" + "\t" + cyclistState;
 	}
 
-	public double compete() {
+	public double compete(int raceType) {
 		double randomNum = Math.random() * (maxTime - minTime + 1) + minTime;
 		return randomNum;
 	}

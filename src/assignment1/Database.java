@@ -1,6 +1,7 @@
 package assignment1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Database {
 
@@ -19,10 +20,10 @@ public class Database {
 
 	private ArrayList<Sprinter> Sprinter() {
 		ArrayList<Sprinter> sprinter = new ArrayList<Sprinter>();
-		sprinter.add(new Sprinter("RU01", "Haile", 35, "NT", "Runner"));
-		sprinter.add(new Sprinter("RU02", "Paula", 30, "NSW", "Runner"));
-		sprinter.add(new Sprinter("RU03", "Joan", 32, "Queensland", "Runner"));
-		sprinter.add(new Sprinter("RU04", "Meb", 27, "VIC", "Runner"));
+		sprinter.add(new Sprinter("RU01", "Haile", 35, "NT", "Sprinter"));
+		sprinter.add(new Sprinter("RU02", "Paula", 30, "NSW", "Sprinter"));
+		sprinter.add(new Sprinter("RU03", "Joan", 32, "Queensland", "Sprinter"));
+		sprinter.add(new Sprinter("RU04", "Meb", 27, "VIC", "Sprinter"));
 		return sprinter;
 	}
 
@@ -66,7 +67,9 @@ public class Database {
 	}
 
 	public ArrayList<Official> getOfficial() {
-		return Official();
+		Collections.shuffle(Official()); // shuffle Official
+		System.out.println(Official());
+		return getOfficial();
 	}
 
 	private ArrayList<Participant> participant() {
@@ -81,6 +84,24 @@ public class Database {
 
 	public ArrayList<Participant> getAllParticipants() {
 		return participant();
+	}
+	
+	public ArrayList<Participant> getParticipantsByType(int raceType) {
+		ArrayList<Participant> raceStart = new ArrayList<Participant>();
+		for (int i = 0; i < participant().size(); i++) {
+		String checkType = participant().get(i).getType();
+		if (raceType == 1 && checkType == "Swimmer"){
+			raceStart.add(getSwimmer().get(i));
+			raceStart.add(getSuperAthlete().get(i));
+		}else if (raceType == 2 && checkType == "Sprinter"){
+			raceStart.add(getSwimmer().get(i));
+			raceStart.add(getSuperAthlete().get(i));
+		}else if (raceType == 3 && checkType == "Cyclist"){
+			raceStart.add(getSwimmer().get(i));
+			raceStart.add(getSuperAthlete().get(i));			
+		}
+		}
+		return raceStart;
 	}
 
 }

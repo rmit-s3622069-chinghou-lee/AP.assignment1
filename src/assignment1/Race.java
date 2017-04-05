@@ -22,8 +22,8 @@ public class Race extends Game {
 		return gameRounds;
 	}
 
-	public void setGameRounds(int raceType) {
-		this.gameRounds = addGameRound(raceType);
+	public void setGameRounds(int gameRounds) {
+		this.gameRounds = gameRounds;
 	}
 
 	public Participant getParticipant() {
@@ -46,13 +46,31 @@ public class Race extends Game {
 		return completeTime;
 	}
 
+	public double setCompleteTime(int raceType) {
+		if (raceType == 1) {
+			Swimmer s = new Swimmer(null, null, 0, null, null);
+			completeTime = s.compete(raceType);
+		} else if (raceType == 2) {
+			Sprinter r = new Sprinter(null, null, 0, null, null);
+			completeTime = r.compete(raceType);
+		} else if (raceType == 3) {
+			Cyclist c = new Cyclist(null, null, 0, null, null);
+			completeTime = c.compete(raceType);
+		}else{
+			System.out.println("Error\n");
+		}
+		return completeTime;
+	}
+
 	public int getAthleteScore() {
 		return athleteScore;
 	}
-	
-	public String toSring(){
-		return gameRounds + participant.getName() + official + completeTime + athleteScore;
-		
+
+	public String toSring() {
+		System.out.println("Result for race: " + gameRounds);
+		System.out.println("Referee for this race is: " + official);
+		return participant.getName() + "\t" + completeTime + "\t" + athleteScore;
+
 	}
 
 }
