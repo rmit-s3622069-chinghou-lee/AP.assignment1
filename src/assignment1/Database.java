@@ -68,7 +68,7 @@ public class Database {
 
 	public ArrayList<Official> getOfficial() {
 		Collections.shuffle(Official()); // shuffle Official
-		System.out.println(Official());
+		// System.out.println(Official());
 		return getOfficial();
 	}
 

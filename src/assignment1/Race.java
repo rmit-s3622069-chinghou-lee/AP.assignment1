@@ -65,6 +65,8 @@ public class Race extends Game {
 	public int getAthleteScore() {
 		return athleteScore;
 	}
+	
+	
 
 	public String toSring() {
 		System.out.println("Result for race: " + gameRounds);
