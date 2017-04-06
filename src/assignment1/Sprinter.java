@@ -5,18 +5,17 @@ public class Sprinter extends Athlete {
 	private String sprinterName;
 	private int sprinterAge;
 	private String sprinterState;
-	private String sprinterType;
-	public double minTime = 10;
-	public double maxTime = 20;
+	private String athleteType;
+
 
 	public Sprinter(String sprinterID, String sprinterName, int sprinterAge, String sprinterState,
-			String sprinterType) {
-		super(sprinterID, sprinterName, sprinterAge, sprinterState, sprinterType);
+			String athleteType) {
+		super(sprinterID, sprinterName, sprinterAge, sprinterState, athleteType);
 		this.sprinterID = sprinterID;
 		this.sprinterName = sprinterName;
 		this.sprinterAge = sprinterAge;
 		this.sprinterState = sprinterState;
-		this.sprinterType = sprinterType;
+		this.athleteType = athleteType;
 	}
 
 	public String toString() {
@@ -25,6 +24,8 @@ public class Sprinter extends Athlete {
 
 	@Override
 	public double compete() {
+		double minTime = 10;
+		double maxTime = 20;
 		double randomNum = Math.random() * (maxTime - minTime + 1) + minTime;
 		return randomNum;
 	}

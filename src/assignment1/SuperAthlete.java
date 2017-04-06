@@ -5,15 +5,15 @@ public class SuperAthlete extends Participant{
 	private String superAthleteName;
 	private int superAthleteAge;
 	private String superAthleteState;
-	private String superAthleteType;
+	private String athleteType;
 	
-	public SuperAthlete(String superAthleteID, String superAthleteName, int superAthleteAge, String superAthleteState,String superAthleteType) {
-		super(superAthleteID, superAthleteName, superAthleteAge, superAthleteState, superAthleteType);
+	public SuperAthlete(String superAthleteID, String superAthleteName, int superAthleteAge, String superAthleteState,String athleteType) {
+		super(superAthleteID, superAthleteName, superAthleteAge, superAthleteState, athleteType);
 		this.superAthleteID =superAthleteID;
 		this.superAthleteName = superAthleteName;
 		this.superAthleteAge = superAthleteAge;
 		this.superAthleteState = superAthleteState;
-		this.superAthleteType = superAthleteType;
+		this.athleteType = athleteType;
 	}
 	
 	public String toString(){

@@ -15,25 +15,25 @@ public class Game {
 	public ArrayList<Race> setRaceList(String gameID, int raceType, ArrayList<Participant> participantsByType,
 			ArrayList<Official> official) {
 		boolean printLoop = false;
+
+		race.getCompete(raceType);
+
 		ArrayList<Race> raceStart = new ArrayList<Race>();
-		
+
 		do {
 			for (int i = 0; i < participantsByType.size(); i++) {
 				if (raceType == 1) {
-					raceStart.add(
-							new Race(gameID, participantsByType.get(i), official.get(0), race.getCompete(raceType), 0));
+					raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
 					System.out.println(raceStart.get(i).toString());
 				} else if (raceType == 2) {
-					raceStart.add(
-							new Race(gameID, participantsByType.get(i), official.get(0), race.getCompete(raceType), 0));
+					raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
 					System.out.println(participantsByType.toString());
 				} else if (raceType == 3) {
-					raceStart.add(
-							new Race(gameID, participantsByType.get(i), official.get(0), race.getCompete(raceType), 0));
+					raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
 					System.out.println(participantsByType.toString());
 				}
-				System.out.println("No Participant List!");
-				printLoop = true; // end the loop
+				// System.out.println("No Participant List!");
+				// printLoop = true; // end the loop
 			}
 
 			raceStart.trimToSize();

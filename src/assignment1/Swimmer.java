@@ -6,18 +6,16 @@ public class Swimmer extends Athlete {
 	private String swimmeName; 
 	private int swimmerAge; 
 	private String swimmerState;
-	private String swimmerType;
+	private String athleteType;
 
-	public double minTime = 100;
-	public double maxTime = 200;
 	
-	public Swimmer(String swimmerID, String swimmeName, int swimmerAge, String swimmerState,String swimmerType) {
-		super(swimmerID, swimmeName, swimmerAge, swimmerState, swimmerType);
+	public Swimmer(String swimmerID, String swimmeName, int swimmerAge, String swimmerState,String athleteType) {
+		super(swimmerID, swimmeName, swimmerAge, swimmerState, athleteType);
 		this.swimmerID = swimmerID;
 		this.swimmeName =swimmeName;
 		this.swimmerAge = swimmerAge;
 		this.swimmerState = swimmerState;
-		this.swimmerType = swimmerType;
+		this.athleteType =athleteType;
 	}
 	
 	public String toString(){
@@ -25,6 +23,8 @@ public class Swimmer extends Athlete {
 	}
 	
 	public double compete(){
+		double minTime = 100;
+		double maxTime = 200;
 		double randomNum = Math.random()*(maxTime - minTime +1) + minTime;
 		return randomNum;
 	}
