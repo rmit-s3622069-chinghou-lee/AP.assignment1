@@ -23,10 +23,10 @@ public class Sprinter extends Athlete {
 	}
 
 	@Override
-	public double compete() {
-		double minTime = 10;
-		double maxTime = 20;
-		double randomNum = Math.random() * (maxTime - minTime + 1) + minTime;
+	public int compete() {
+		int minTime = 10;
+		int maxTime = 20;
+		int randomNum = (int) (Math.random()*(maxTime - minTime +1)) + minTime;
 		return randomNum;
 	}
 }

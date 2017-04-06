@@ -22,10 +22,10 @@ public class Swimmer extends Athlete {
 		return swimmerID + "\t" + "\t" + swimmeName + "\t" + "\t" + swimmerAge + "\t" + "\t" + swimmerState;
 	}
 	
-	public double compete(){
-		double minTime = 100;
-		double maxTime = 200;
-		double randomNum = Math.random()*(maxTime - minTime +1) + minTime;
+	public int compete(){
+		int minTime = 100;
+		int maxTime = 200;
+		int randomNum = (int) (Math.random()*(maxTime - minTime +1)) + minTime;
 		return randomNum;
 	}
 }

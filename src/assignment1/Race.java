@@ -56,25 +56,13 @@ public class Race extends Game {
 		this.athleteScore = athleteScore;
 	}
 
-	public int getCompete(int raceType) {
-		int competeTime = 0;
-		if (raceType == 1) {
-			Swimmer s = new Swimmer(null, null, 0, null, null);
-			competeTime = (int) s.compete();
-		} else if (raceType == 1) {
-			Sprinter r = new Sprinter(null, null, 0, null, null);
-			competeTime = (int) r.compete();
-		} else if (raceType == 1) {
-			Cyclist c = new Cyclist(null, null, 0, null, null);
-			competeTime = (int) c.compete();
-		}
-		return competeTime;
+	public String toRaceResult() {
+		return participant.getParticipantID() + "\t" + participant.getParticipantName()+ "\t" + getCompleteTime();
 
 	}
-
-	public String toString() {
-		return getParticipant().getParticipantID() + "\t" + "\t" + getParticipant().getParticipantName();
-
+	
+	public String toString(){
+		return participant.getParticipantID() + "\t" + participant.getParticipantName()+ "\t" + getCompleteTime() + "\t" + getAthleteScore();
 	}
 
 }

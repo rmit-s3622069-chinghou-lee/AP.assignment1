@@ -20,10 +20,10 @@ public class Cyclist extends Athlete {
 		return cyclistID + "\t" + "\t" + cyclistName + "\t" + "\t" + cyclistAge + "\t" + "\t" + cyclistState;
 	}
 
-	public double compete() {
-		double minTime = 500;
-		double maxTime = 800;
-		double randomNum = Math.random() * (maxTime - minTime + 1) + minTime;
+	public int compete() {
+		int minTime = 500;
+		int maxTime = 800;
+		int randomNum = (int) (Math.random()*(maxTime - minTime +1)) + minTime;
 		return randomNum;
 	}
 

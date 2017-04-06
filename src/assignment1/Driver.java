@@ -54,7 +54,7 @@ public class Driver {
 				gameLoop = false;
 				break;
 			case displayAthletePoints:
-				Game.displayAthletePoints();
+				Game.displayAthletePoints(raceResult);
 				gameLoop = false;
 				break;
 			case gameExit:

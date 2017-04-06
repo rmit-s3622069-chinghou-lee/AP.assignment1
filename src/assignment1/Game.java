@@ -9,38 +9,59 @@ public class Game {
 
 	final static int minAthlete = 4;
 	final static int maxAthlete = 8;
+	
+	public void displayFinalResult(ArrayList<Race> raceResult) {
+		// raceStart = storeRace(raceType);
+		for (int i = 0; i < raceResult.size(); i++) {
+			System.out.println(raceResult.get(i).toRaceResult());
+		}
+		// System.out.println("displayFinalResult");
+	}
 
-	private Race race;
+	public void displayAthletePoints(ArrayList<Race> raceResult) {
+		raceResult.forEach(System.out::println);
+
+	}
 
 	public ArrayList<Race> setRaceList(String gameID, int raceType, ArrayList<Participant> participantsByType,
 			ArrayList<Official> official) {
-		boolean printLoop = false;
-
-		race.getCompete(raceType);
 
 		ArrayList<Race> raceStart = new ArrayList<Race>();
 
-		do {
-			for (int i = 0; i < participantsByType.size(); i++) {
-				if (raceType == 1) {
-					raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
-					System.out.println(raceStart.get(i).toString());
-				} else if (raceType == 2) {
-					raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
-					System.out.println(participantsByType.toString());
-				} else if (raceType == 3) {
-					raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
-					System.out.println(participantsByType.toString());
-				}
-				// System.out.println("No Participant List!");
-				// printLoop = true; // end the loop
+		for (int i = 0; i < participantsByType.size(); i++) {
+			int competeTime = getCompeteTime(raceType);
+			if (raceType == 1) {
+				raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), competeTime, 0));
+			} else if (raceType == 2) {
+				raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), competeTime, 0));
+			} else if (raceType == 3) {
+				raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
+			} else {
+				System.out.println("There is no race available!\n");
 			}
 
-			raceStart.trimToSize();
-			Collections.sort(raceStart, Comparator.comparing(Race::getCompleteTime).reversed());
-			break;
-		} while (!printLoop);
+		}
+		Collections.sort(raceStart, Comparator.comparingInt(Race::getCompleteTime));
+		raceStart.get(0).setAthleteScore(5);
+		raceStart.get(1).setAthleteScore(2);
+		raceStart.get(2).setAthleteScore(1);
 		return raceStart;
+	}
+
+	public int getCompeteTime(int raceType) {
+		int competeTime = 0;
+		if (raceType == 1) {
+			Swimmer s = new Swimmer(null, null, 0, null, null);
+			competeTime = s.compete();
+		} else if (raceType == 1) {
+			Sprinter r = new Sprinter(null, null, 0, null, null);
+			competeTime = r.compete();
+		} else if (raceType == 1) {
+			Cyclist c = new Cyclist(null, null, 0, null, null);
+			competeTime = c.compete();
+		}
+		return competeTime;
+
 	}
 
 	public int gameSelect() {
@@ -116,9 +137,6 @@ public class Game {
 	public String gameStart(String userPrediction, ArrayList<Participant> participantsByType,
 			ArrayList<Race> raceResult) {
 		String raceWinner = participantsByType.get(0).getParticipantID();
-		raceResult.get(0).setAthleteScore(5);
-		raceResult.get(1).setAthleteScore(2);
-		raceResult.get(2).setAthleteScore(1);
 
 		if (userPrediction == raceWinner) {
 			System.out.println("You Win");
@@ -132,18 +150,7 @@ public class Game {
 		return raceWinner;
 	}
 
-	public void displayFinalResult(ArrayList<Race> raceResult) {
-		// raceStart = storeRace(raceType);
-		for (int i = 0; i < raceResult.size(); i++) {
-			System.out.println(raceResult.get(i).toString());
-		}
-		// System.out.println("displayFinalResult");
-	}
 
-	public void displayAthletePoints() {
-		System.out.println("displayAthletePoints");
-
-	}
 
 	public String getRaceID() {
 		return raceID;
