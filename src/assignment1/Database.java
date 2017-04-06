@@ -98,7 +98,7 @@ public class Database {
 			ParticipantList.addAll(getSuperAthlete());
 		}
 		ParticipantList.trimToSize();
-		// Collections.shuffle(ParticipantList);
+		Collections.shuffle(ParticipantList);
 		return ParticipantList;
 	}
 }

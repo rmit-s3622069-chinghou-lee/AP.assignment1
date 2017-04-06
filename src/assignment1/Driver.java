@@ -14,7 +14,7 @@ public class Driver {
 	private static final int gameExit = 6;
 
 	public void gameRun() {
-		String raceID;
+		String raceID = null;
 		int gameOption;
 		String raceWinner;
 		String userPrediction = null;
@@ -25,6 +25,7 @@ public class Driver {
 		Database Database = new Database();
 		
 		ArrayList<Participant> participantsByType = null;
+		ArrayList<Race> raceResult = null;
 		ArrayList<Official> Official = Database.getOfficial();
 
 		do {
@@ -44,11 +45,12 @@ public class Driver {
 				gameLoop = false;
 				break;
 			case gameStart:
-				raceWinner = Game.gameStart(userPrediction, participantsByType);
+				raceResult = Game.setRaceList(raceID, raceType, participantsByType, Official);
+				raceWinner = Game.gameStart(userPrediction, participantsByType,raceResult);
 				gameLoop = false;
 				break;
 			case displayFinalResult:
-				Game.displayFinalResult();
+				Game.displayFinalResult(raceResult);
 				gameLoop = false;
 				break;
 			case displayAthletePoints:

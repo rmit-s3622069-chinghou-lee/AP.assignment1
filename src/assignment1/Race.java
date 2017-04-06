@@ -2,14 +2,13 @@ package assignment1;
 
 public class Race extends Game {
 
-	private int gameRounds;
+	private String gameRounds;
 	private Participant participant;
 	private Official official;
 	private int completeTime;
 	private int athleteScore;
-	private Athlete athlete;
 
-	public Race(int gameRounds, Participant participant, Official official, int completeTime, int athleteScore) {
+	public Race(String gameRounds, Participant participant, Official official, int completeTime, int athleteScore) {
 		this.gameRounds = gameRounds;
 		this.participant = participant;
 		this.official = official;
@@ -17,11 +16,11 @@ public class Race extends Game {
 		this.athleteScore = athleteScore;
 	}
 
-	public int getGameRounds() {
+	public String getGameRounds() {
 		return gameRounds;
 	}
 
-	public void setGameRounds(int gameRounds) {
+	public void setGameRounds(String gameRounds) {
 		this.gameRounds = gameRounds;
 	}
 
@@ -41,18 +40,8 @@ public class Race extends Game {
 		this.official = official;
 	}
 
-	public Athlete athlete() {
-		return athlete;
-	}
-
-	public double setCompleteTime(int raceType) {
-		double completeTime = 0;
-		if (raceType >= 1 && raceType <= 3) {
-			completeTime = athlete().compete();
-		} else {
-			System.out.println("Error\n");
-		}
-		return (int) completeTime;
+	public double setCompleteTime(double completeTime) {
+		return completeTime;
 	}
 
 	public int getCompleteTime() {
@@ -61,6 +50,26 @@ public class Race extends Game {
 
 	public int getAthleteScore() {
 		return athleteScore;
+	}
+	
+	public void setAthleteScore(int athleteScore){
+		this.athleteScore = athleteScore;
+	}
+
+	public int getCompete(int raceType) {
+		int competeTime = 0;
+		if (raceType == 1) {
+			Swimmer s = new Swimmer(null, null, 0, null, null);
+			competeTime = (int) s.compete();
+		} else if (raceType == 1) {
+			Sprinter r = new Sprinter(null, null, 0, null, null);
+			competeTime = (int) r.compete();
+		} else if (raceType == 1) {
+			Cyclist c = new Cyclist(null, null, 0, null, null);
+			competeTime = (int) c.compete();
+		}
+		return competeTime;
+
 	}
 
 	public String toString() {
