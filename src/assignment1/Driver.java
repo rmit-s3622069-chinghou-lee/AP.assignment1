@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver {
+	private String raceID;
+	private int gameOption;
+	private int raceType;
 
 	// constants corresponding to main menu options
 	private static final int gameSelect = 1;
@@ -14,23 +17,23 @@ public class Driver {
 	private static final int gameExit = 6;
 
 	public void gameRun() {
-		String raceID = null;
-		int gameOption;
+
+		
 		String raceWinner;
 		String userPrediction = null;
-		int raceType = 0;
+
 
 		boolean gameLoop = false;
-		
+
 		Database Database = new Database();
-		
+
 		ArrayList<Participant> participantsByType = null;
 		ArrayList<Race> raceResult = null;
 		ArrayList<Official> Official = Database.getOfficial();
 
 		do {
 			Game Game = new Game();
-			gameOption = displayMenu();
+			gameOption = displayMenu(participantsByType);
 
 			switch (gameOption) {
 			case gameSelect:
@@ -46,7 +49,7 @@ public class Driver {
 				break;
 			case gameStart:
 				raceResult = Game.setRaceList(raceID, raceType, participantsByType, Official);
-				raceWinner = Game.gameStart(userPrediction,raceResult);
+				raceWinner = Game.gameStart(userPrediction, raceResult);
 				gameLoop = false;
 				break;
 			case displayFinalResult:
@@ -67,7 +70,11 @@ public class Driver {
 		} while (!gameLoop);
 	}
 
-	public int displayMenu() { // display the Ozlympic's main menu
+	public int displayMenu(ArrayList<Participant> participantsByType) { // display
+																		// the
+																		// Ozlympic's
+																		// main
+																		// menu
 		// and return an
 		// input selection
 		int option = 0;
@@ -86,7 +93,12 @@ public class Driver {
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				option = scanner.nextInt(); // user insert input
-				if (option >= 1 && option <= 6) {
+				if (option >= 1 && option <= 6 && participantsByType == null) {
+					System.out.println("");
+				} else if (option == 1 && participantsByType != null) {
+					participantsByType.clear();
+					System.out.println("");
+				} else if ((option >= 2 && option <= 6 && participantsByType != null)) {
 					System.out.println("");
 				} else {
 					System.out.println("\nPlease insert a valid input!\n");

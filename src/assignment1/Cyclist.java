@@ -23,7 +23,7 @@ public class Cyclist extends Athlete {
 	public int compete() {
 		int minTime = 500;
 		int maxTime = 800;
-		int randomNum = (int) (Math.random()*(maxTime - minTime +1)) + minTime;
+		int randomNum = (int) (Math.random() * (maxTime - minTime + 1)) + minTime;
 		return randomNum;
 	}
 

@@ -17,12 +17,12 @@ public class Official extends Participant {
 		this.officialState = officialState;
 		this.sportType = sportType;
 	}
-	
-	public String toString(){
-		return officialID + ", " + officialName ;
+
+	public String toString() {
+		return officialID + ", " + officialName;
 	}
 
-	public void setScore(ArrayList<Race> raceResult){
+	public void setScore(ArrayList<Race> raceResult) {
 		raceResult.get(0).setAthleteScore(5);
 		raceResult.get(1).setAthleteScore(2);
 		raceResult.get(2).setAthleteScore(1);

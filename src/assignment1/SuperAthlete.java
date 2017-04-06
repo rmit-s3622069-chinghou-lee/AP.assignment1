@@ -1,23 +1,25 @@
 package assignment1;
 
-public class SuperAthlete extends Participant{
+public class SuperAthlete extends Participant {
 	private String superAthleteID;
 	private String superAthleteName;
 	private int superAthleteAge;
 	private String superAthleteState;
 	private String athleteType;
-	
-	public SuperAthlete(String superAthleteID, String superAthleteName, int superAthleteAge, String superAthleteState,String athleteType) {
+
+	public SuperAthlete(String superAthleteID, String superAthleteName, int superAthleteAge, String superAthleteState,
+			String athleteType) {
 		super(superAthleteID, superAthleteName, superAthleteAge, superAthleteState, athleteType);
-		this.superAthleteID =superAthleteID;
+		this.superAthleteID = superAthleteID;
 		this.superAthleteName = superAthleteName;
 		this.superAthleteAge = superAthleteAge;
 		this.superAthleteState = superAthleteState;
 		this.athleteType = athleteType;
 	}
-	
-	public String toString(){
-		return superAthleteID + "\t" + "\t" + superAthleteName + "\t" + "\t" + superAthleteAge + "\t" + "\t" + superAthleteState;
+
+	public String toString() {
+		return superAthleteID + "\t" + "\t" + superAthleteName + "\t" + "\t" + superAthleteAge + "\t" + "\t"
+				+ superAthleteState;
 	}
 
 	public double compete() {

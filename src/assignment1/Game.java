@@ -12,8 +12,6 @@ public class Game {
 
 	final static int minAthlete = 4;
 	final static int maxAthlete = 8;
-	
-	private Race race;
 
 	public int gameSelect() {
 		boolean validInput = false;
@@ -47,7 +45,7 @@ public class Game {
 					System.out.println("\nPlease insert a valid input!\n");
 					validInput = false;
 				}
-
+				setRaceID(raceID);
 			} catch (Exception e) {
 				System.out.println("\nNot a valid Input. Please try again!\n");
 				validInput = false;
@@ -60,14 +58,16 @@ public class Game {
 		System.out.println(
 				"No" + "\t" + "Athlete ID" + "\t" + "Athlete Name" + "\t" + "Athlete Age" + "\t" + "Athlete State");
 		System.out.println("======================================================================");
-		for (int i = 0, No = 0; i < participantsByType.size(); i++, No++) {
-			System.out.println(No + "\t" + participantsByType.get(i).toString());
-		}
-		System.out.println("======================================================================");
+		if (participantsByType.size() >= 4 && participantsByType.size() <= 8) {
+			for (int i = 0, No = 0; i < participantsByType.size(); i++, No++) {
+				System.out.println(No + "\t" + participantsByType.get(i).toString());
+			}
+		} else if (participantsByType.size() <= 4 && participantsByType.size() >= 8) {
+			System.out.println("Sorry! There is enough athletes to run the race!");
+		}System.out.println("======================================================================");
 	}
 
 	public String getUserPrediction(ArrayList<Participant> participantsByType) {
-
 
 		boolean validInput = false;
 
@@ -94,7 +94,9 @@ public class Game {
 			System.out.println("The Winner is " + raceWinner + ", "
 					+ raceResult.get(0).getParticipant().getParticipantName() + "\n");
 		} else if (userPrediction != raceWinner) {
-			System.out.println("Have a better luck next time!\n");
+			System.out.println("Better luck next time!\n");
+			System.out.println("The Winner is " + raceWinner + ", "
+					+ raceResult.get(0).getParticipant().getParticipantName() + "\n");
 		}
 		return raceWinner;
 	}
@@ -148,6 +150,10 @@ public class Game {
 
 	public String getRaceID() {
 		return raceID;
+	}
+	
+	public void setRaceID(String raceID){
+		this.raceID = raceID;
 	}
 
 	public int getCompeteTime(int raceType) {

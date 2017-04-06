@@ -7,9 +7,7 @@ public class Sprinter extends Athlete {
 	private String sprinterState;
 	private String athleteType;
 
-
-	public Sprinter(String sprinterID, String sprinterName, int sprinterAge, String sprinterState,
-			String athleteType) {
+	public Sprinter(String sprinterID, String sprinterName, int sprinterAge, String sprinterState, String athleteType) {
 		super(sprinterID, sprinterName, sprinterAge, sprinterState, athleteType);
 		this.sprinterID = sprinterID;
 		this.sprinterName = sprinterName;
@@ -26,7 +24,7 @@ public class Sprinter extends Athlete {
 	public int compete() {
 		int minTime = 10;
 		int maxTime = 20;
-		int randomNum = (int) (Math.random()*(maxTime - minTime +1)) + minTime;
+		int randomNum = (int) (Math.random() * (maxTime - minTime + 1)) + minTime;
 		return randomNum;
 	}
 }

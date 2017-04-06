@@ -51,18 +51,21 @@ public class Race extends Game {
 	public int getAthleteScore() {
 		return athleteScore;
 	}
-	
-	public void setAthleteScore(int athleteScore){
+
+	public void setAthleteScore(int athleteScore) {
 		this.athleteScore = athleteScore;
 	}
 
 	public String toRaceResult() {
-		return participant.getParticipantID() + "\t" + "\t" + participant.getParticipantName() + "\t" + "\t" + participant.getParticipantAge() + "\t" + "\t" + participant.getParticipantState() + "\t" + "\t" + getCompleteTime();
+		return participant.getParticipantID() + "\t" + "\t" + participant.getParticipantName() + "\t" + "\t"
+				+ participant.getParticipantAge() + "\t" + "\t" + participant.getParticipantState() + "\t" + "\t"
+				+ getCompleteTime();
 
 	}
-	
-	public String toString(){
-		return participant.getParticipantID() + "\t" + "\t" + participant.getParticipantName()+ "\t" + "\t" + getAthleteScore();
+
+	public String toString() {
+		return participant.getParticipantID() + "\t" + "\t" + participant.getParticipantName() + "\t" + "\t"
+				+ getAthleteScore();
 	}
 
 }

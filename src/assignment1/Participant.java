@@ -10,18 +10,19 @@ public abstract class Participant {
 	private double competeTime; // represent participant's time
 
 	// Participant constructor invoked by subclasses using super()
-	public Participant(String participantID, String participantName, int participantAge, String participantState, String participantType) { 
+	public Participant(String participantID, String participantName, int participantAge, String participantState,
+			String participantType) {
 		this.participantID = participantID;
 		this.participantName = participantName;
 		this.participantAge = participantAge;
 		this.participantState = participantState;
 		this.participantType = participantType;
 	} // end Participant constructor
-	
+
 	public String getParticipantID() {
 		return participantID; // get participant's ID
 	} // end method getID
- 
+
 	public String getParticipantName() {
 		return participantName; // get participant's name
 	} // end method getName
@@ -37,9 +38,10 @@ public abstract class Participant {
 	public String getParticipantType() {
 		return participantType; // get participant's type
 	} // end method getType
-	
-	public String toString(){
-		return participantID + "\t" + "\t" + participantName + "\t" + "\t" + participantAge + "\t" + "\t" + participantState;
+
+	public String toString() {
+		return participantID + "\t" + "\t" + participantName + "\t" + "\t" + participantAge + "\t" + "\t"
+				+ participantState;
 	}
-	
+
 } // end class Participant
