@@ -48,14 +48,14 @@ public class Race extends Game {
 	public double setCompleteTime(int raceType) {
 		double completeTime = 0;
 		if (raceType >= 1 && raceType <= 3) {
-			completeTime = athlete().compete(raceType);
+			completeTime = athlete().compete();
 		} else {
 			System.out.println("Error\n");
 		}
 		return (int) completeTime;
 	}
-	
-	public int getCompleteTime(){
+
+	public int getCompleteTime() {
 		return completeTime;
 	}
 
@@ -64,7 +64,7 @@ public class Race extends Game {
 	}
 
 	public String toString() {
-		return getParticipant().getID() + "\t" + getParticipant().getName() + "\t" + completeTime + "\t" + athleteScore;
+		return getParticipant().getParticipantID() + "\t" + "\t" + getParticipant().getParticipantName();
 
 	}
 

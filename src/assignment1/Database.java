@@ -27,7 +27,7 @@ public class Database {
 		return sprinter;
 	}
 
-	public ArrayList<Sprinter> getRunner() {
+	public ArrayList<Sprinter> getSprinter() {
 		return Sprinter();
 	}
 
@@ -47,7 +47,7 @@ public class Database {
 	private ArrayList<SuperAthlete> SuperAthlete() {
 		ArrayList<SuperAthlete> superAthlete = new ArrayList<SuperAthlete>();
 		superAthlete.add(new SuperAthlete("SA01", "Jay", 30, "SA", "SuperAthlete"));
-		superAthlete.add(new SuperAthlete("SA02", "Charissa", 27, "TAS", "SuperAthlete"));
+		superAthlete.add(new SuperAthlete("SA02", "Cookie", 27, "TAS", "SuperAthlete"));
 		superAthlete.add(new SuperAthlete("SA03", "Shelden", 28, "NSW", "SuperAthlete"));
 		superAthlete.add(new SuperAthlete("SA04", "Candace", 26, "VIC", "SuperAthlete"));
 		return superAthlete;
@@ -71,10 +71,10 @@ public class Database {
 		return Official();
 	}
 
-	private ArrayList<Participant> participant() {
+	private ArrayList<Participant> Participant() {
 		ArrayList<Participant> participant = new ArrayList<Participant>();
 		participant.addAll(getSwimmer());
-		participant.addAll(getRunner());
+		participant.addAll(getSprinter());
 		participant.addAll(getCyclist());
 		participant.addAll(getSuperAthlete());
 		Collections.shuffle(participant);
@@ -82,25 +82,23 @@ public class Database {
 	}
 
 	public ArrayList<Participant> getAllParticipants() {
-		return participant();
-	}
-	
-	public ArrayList<Participant> getParticipantsByType(int raceType) {
-		ArrayList<Participant> raceStart = new ArrayList<Participant>();
-		for (int i = 0; i < participant().size(); i++) {
-		String checkType = participant().get(i).getType();
-		if (raceType == 1 && checkType == "Swimmer"){
-			raceStart.add(getSwimmer().get(i));
-			raceStart.add(getSuperAthlete().get(i));
-		}else if (raceType == 2 && checkType == "Sprinter"){
-			raceStart.add(getSwimmer().get(i));
-			raceStart.add(getSuperAthlete().get(i));
-		}else if (raceType == 3 && checkType == "Cyclist"){
-			raceStart.add(getSwimmer().get(i));
-			raceStart.add(getSuperAthlete().get(i));			
-		}
-		}
-		return raceStart;
+		return Participant();
 	}
 
+	protected ArrayList<Participant> ParticipantsByType(int raceType) {
+		ArrayList<Participant> ParticipantList = new ArrayList<Participant>();
+		if (raceType == 1) {
+			ParticipantList.addAll(getSwimmer());
+			ParticipantList.addAll(getSuperAthlete());
+		} else if (raceType == 2) {
+			ParticipantList.addAll(getSprinter());
+			ParticipantList.addAll(getSuperAthlete());
+		} else if (raceType == 3) {
+			ParticipantList.addAll(getCyclist());
+			ParticipantList.addAll(getSuperAthlete());
+		}
+		ParticipantList.trimToSize();
+		// Collections.shuffle(ParticipantList);
+		return ParticipantList;
+	}
 }

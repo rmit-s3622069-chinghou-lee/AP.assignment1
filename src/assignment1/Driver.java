@@ -1,9 +1,9 @@
 package assignment1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver {
-	int raceType = 0;
 
 	// constants corresponding to main menu options
 	private static final int gameSelect = 1;
@@ -14,24 +14,38 @@ public class Driver {
 	private static final int gameExit = 6;
 
 	public void gameRun() {
+		String raceID;
+		int gameOption;
+		String raceWinner;
+		String userPrediction = null;
+		int raceType = 0;
 
 		boolean gameLoop = false;
+		
+		Database Database = new Database();
+		
+		ArrayList<Participant> participantsByType = null;
+		ArrayList<Official> Official = Database.getOfficial();
 
 		do {
 			Game Game = new Game();
-			int gameOption = displayMenu(raceType);
+			gameOption = displayMenu();
 
 			switch (gameOption) {
 			case gameSelect:
 				raceType = Game.gameSelect();
+				raceID = Game.getRaceID();
 				gameLoop = false;
 				break;
 			case gamePrediction:
-				Game.gamePrediction(raceType);
+				participantsByType = Database.ParticipantsByType(raceType);
+				Game.printAthleteSelection(participantsByType);
+				userPrediction = Game.getUserPrediction(participantsByType);
 				gameLoop = false;
 				break;
 			case gameStart:
-				Game.gameStart(raceType);
+				raceWinner = Game.gameStart(userPrediction, participantsByType);
+				gameLoop = false;
 				break;
 			case displayFinalResult:
 				Game.displayFinalResult();
@@ -51,8 +65,8 @@ public class Driver {
 		} while (!gameLoop);
 	}
 
-	public int displayMenu(int raceType) { // display the Ozlympic's main menu
-											// and return an
+	public int displayMenu() { // display the Ozlympic's main menu
+		// and return an
 		// input selection
 		int option = 0;
 		boolean validInput = false;
@@ -70,14 +84,7 @@ public class Driver {
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				option = scanner.nextInt(); // user insert input
-				if (option == 1 && raceType >= 0) { // initialize game to run &&
-													// re-run the game
-					System.out.println("");
-				} else if (option >= 2 && raceType == 0) { // no game run yet
-					gameRun();
-					break;
-				} else if (option >= 2 && raceType >= 1) { // after initialize
-															// game
+				if (option >= 1 && option <= 6) {
 					System.out.println("");
 				} else {
 					System.out.println("\nPlease insert a valid input!\n");
