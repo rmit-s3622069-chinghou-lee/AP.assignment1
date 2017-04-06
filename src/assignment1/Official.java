@@ -8,8 +8,6 @@ public class Official extends Participant {
 	private int officialAge;
 	private String officialState;
 	private String sportType;
-	private int score;
-	private double completeTime;
 
 	public Official(String officialID, String officialName, int officialAge, String officialState, String sportType) {
 		super(officialID, officialName, officialAge, officialState, sportType);
@@ -21,13 +19,13 @@ public class Official extends Participant {
 	}
 	
 	public String toString(){
-		return officialID + "\t" + officialName;
+		return officialID + ", " + officialName ;
 	}
 
-	public void countScore(){
-		// if participant with shortest time get 5 points
-		// if participant with between longest - shortest time get 2 points
-		// if participant with longest time get 1 points
+	public void setScore(ArrayList<Race> raceResult){
+		raceResult.get(0).setAthleteScore(5);
+		raceResult.get(1).setAthleteScore(2);
+		raceResult.get(2).setAthleteScore(1);
 	}
 
 }

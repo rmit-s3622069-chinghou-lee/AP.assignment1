@@ -5,68 +5,18 @@ import java.util.*;
 public class Game {
 	private String raceID;
 	private int raceRounds;
-	private int userPrediction;
+	private int raceType;
+	private int userInputPrediction;
+	private String athleteIDPredict;
+	private int competeTime;
 
 	final static int minAthlete = 4;
 	final static int maxAthlete = 8;
 	
-	public void displayFinalResult(ArrayList<Race> raceResult) {
-		// raceStart = storeRace(raceType);
-		for (int i = 0; i < raceResult.size(); i++) {
-			System.out.println(raceResult.get(i).toRaceResult());
-		}
-		// System.out.println("displayFinalResult");
-	}
-
-	public void displayAthletePoints(ArrayList<Race> raceResult) {
-		raceResult.forEach(System.out::println);
-
-	}
-
-	public ArrayList<Race> setRaceList(String gameID, int raceType, ArrayList<Participant> participantsByType,
-			ArrayList<Official> official) {
-
-		ArrayList<Race> raceStart = new ArrayList<Race>();
-
-		for (int i = 0; i < participantsByType.size(); i++) {
-			int competeTime = getCompeteTime(raceType);
-			if (raceType == 1) {
-				raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), competeTime, 0));
-			} else if (raceType == 2) {
-				raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), competeTime, 0));
-			} else if (raceType == 3) {
-				raceStart.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
-			} else {
-				System.out.println("There is no race available!\n");
-			}
-
-		}
-		Collections.sort(raceStart, Comparator.comparingInt(Race::getCompleteTime));
-		raceStart.get(0).setAthleteScore(5);
-		raceStart.get(1).setAthleteScore(2);
-		raceStart.get(2).setAthleteScore(1);
-		return raceStart;
-	}
-
-	public int getCompeteTime(int raceType) {
-		int competeTime = 0;
-		if (raceType == 1) {
-			Swimmer s = new Swimmer(null, null, 0, null, null);
-			competeTime = s.compete();
-		} else if (raceType == 1) {
-			Sprinter r = new Sprinter(null, null, 0, null, null);
-			competeTime = r.compete();
-		} else if (raceType == 1) {
-			Cyclist c = new Cyclist(null, null, 0, null, null);
-			competeTime = c.compete();
-		}
-		return competeTime;
-
-	}
+	private Race race;
 
 	public int gameSelect() {
 		boolean validInput = false;
-		int raceType = 0;
 
 		do {
 			validInput = true;
@@ -109,14 +59,16 @@ public class Game {
 	public void printAthleteSelection(ArrayList<Participant> participantsByType) {
 		System.out.println(
 				"No" + "\t" + "Athlete ID" + "\t" + "Athlete Name" + "\t" + "Athlete Age" + "\t" + "Athlete State");
+		System.out.println("======================================================================");
 		for (int i = 0, No = 0; i < participantsByType.size(); i++, No++) {
 			System.out.println(No + "\t" + participantsByType.get(i).toString());
 		}
+		System.out.println("======================================================================");
 	}
 
 	public String getUserPrediction(ArrayList<Participant> participantsByType) {
-		int userInputPrediction = 0;
-		String athleteIDPredict = null;
+
+
 		boolean validInput = false;
 
 		do {
@@ -134,26 +86,84 @@ public class Game {
 		return athleteIDPredict;
 	}
 
-	public String gameStart(String userPrediction, ArrayList<Participant> participantsByType,
-			ArrayList<Race> raceResult) {
-		String raceWinner = participantsByType.get(0).getParticipantID();
+	public String gameStart(String userPrediction, ArrayList<Race> raceResult) {
+		String raceWinner = raceResult.get(0).getParticipant().getParticipantID();
 
 		if (userPrediction == raceWinner) {
-			System.out.println("You Win");
-			System.out.println(
-					"The Winner is " + raceWinner + ", " + participantsByType.get(1).getParticipantName() + "\n");
+			System.out.println("Great Gob! You got the right one!");
+			System.out.println("The Winner is " + raceWinner + ", "
+					+ raceResult.get(0).getParticipant().getParticipantName() + "\n");
 		} else if (userPrediction != raceWinner) {
-			System.out.println("You lose!");
-			System.out.println(
-					"The Winner is " + raceWinner + ", " + participantsByType.get(1).getParticipantName() + "\n");
+			System.out.println("Have a better luck next time!\n");
 		}
 		return raceWinner;
 	}
 
+	public ArrayList<Race> setRaceList(String gameID, int raceType, ArrayList<Participant> participantsByType,
+			ArrayList<Official> official) {
 
+		ArrayList<Race> raceResult = new ArrayList<Race>();
+
+		for (int i = 0; i < participantsByType.size(); i++) {
+			int competeTime = getCompeteTime(raceType);
+			if (raceType == 1) {
+				raceResult.add(new Race(gameID, participantsByType.get(i), official.get(0), competeTime, 0));
+			} else if (raceType == 2) {
+				raceResult.add(new Race(gameID, participantsByType.get(i), official.get(0), competeTime, 0));
+			} else if (raceType == 3) {
+				raceResult.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
+			} else {
+				System.out.println("There is no race available!\n");
+			}
+
+		}
+		Collections.sort(raceResult, Comparator.comparingInt(Race::getCompleteTime));
+		Official o = new Official(null, null, 0, null, null);
+		o.setScore(raceResult);
+		return raceResult;
+	}
+
+	public void displayFinalResult(String raceID, ArrayList<Race> raceResult) {
+		System.out.println("Race ID: " + raceID);
+		System.out.println("Referee: " + raceResult.get(0).getOfficial());
+		System.out.println("============================================================================");
+		System.out.println("Athlete ID" + "\t" + "Athlete Name" + "\t" + "Athlete Age" + "\t" + "Athlete State" + "\t"
+				+ "Race Time(s)");
+		System.out.println("============================================================================");
+		for (int i = 0; i < raceResult.size(); i++) {
+			System.out.println(raceResult.get(i).toRaceResult());
+		}
+		System.out.println("");
+	}
+
+	public void displayAthletePoints(String raceID, ArrayList<Race> raceResult) {
+		System.out.println("Race ID: " + raceID);
+		System.out.println("===============================================");
+		System.out.println("Athlete ID" + "\t" + "Athlete Name" + "\t" + "Athlete Points");
+		System.out.println("===============================================");
+		raceResult.forEach(System.out::println);
+		System.out.println("");
+
+	}
 
 	public String getRaceID() {
 		return raceID;
+	}
+
+	public int getCompeteTime(int raceType) {
+
+		if (raceType == 1) {
+			Swimmer s = new Swimmer(null, null, 0, null, null);
+			competeTime = s.compete();
+		} else if (raceType == 1) {
+			Sprinter r = new Sprinter(null, null, 0, null, null);
+			competeTime = r.compete();
+		} else if (raceType == 1) {
+			Cyclist c = new Cyclist(null, null, 0, null, null);
+			competeTime = c.compete();
+		}
+		return competeTime;
+
 	}
 
 }

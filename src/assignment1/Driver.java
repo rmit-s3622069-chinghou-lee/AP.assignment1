@@ -46,15 +46,15 @@ public class Driver {
 				break;
 			case gameStart:
 				raceResult = Game.setRaceList(raceID, raceType, participantsByType, Official);
-				raceWinner = Game.gameStart(userPrediction, participantsByType,raceResult);
+				raceWinner = Game.gameStart(userPrediction,raceResult);
 				gameLoop = false;
 				break;
 			case displayFinalResult:
-				Game.displayFinalResult(raceResult);
+				Game.displayFinalResult(raceID, raceResult);
 				gameLoop = false;
 				break;
 			case displayAthletePoints:
-				Game.displayAthletePoints(raceResult);
+				Game.displayAthletePoints(raceID, raceResult);
 				gameLoop = false;
 				break;
 			case gameExit:

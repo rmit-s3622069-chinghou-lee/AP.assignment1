@@ -57,12 +57,12 @@ public class Race extends Game {
 	}
 
 	public String toRaceResult() {
-		return participant.getParticipantID() + "\t" + participant.getParticipantName()+ "\t" + getCompleteTime();
+		return participant.getParticipantID() + "\t" + "\t" + participant.getParticipantName() + "\t" + "\t" + participant.getParticipantAge() + "\t" + "\t" + participant.getParticipantState() + "\t" + "\t" + getCompleteTime();
 
 	}
 	
 	public String toString(){
-		return participant.getParticipantID() + "\t" + participant.getParticipantName()+ "\t" + getCompleteTime() + "\t" + getAthleteScore();
+		return participant.getParticipantID() + "\t" + "\t" + participant.getParticipantName()+ "\t" + "\t" + getAthleteScore();
 	}
 
 }
