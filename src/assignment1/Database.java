@@ -1,7 +1,22 @@
 package assignment1;
 
-import java.util.ArrayList;
-import java.util.Collections;
+/*
+ * Ozlympic Game ver 1.0 - Database class
+ * 
+ * Author: Ching Hou, Lee
+ * 
+ * Date created: Mar 29, 2017
+ * 
+ * This program is a system for managing a mini game event - Ozlympic Game.
+ * 
+ * This Ozlympic Game event has three sports: swimming, cycling and running.
+ * User's prediction is limited to only one athlete for each game.
+ * In the end of the game, the user is able to view results and athlete's points.
+ * 
+ * (C) Copyright by Ching Hou,Lee. All Rights Reserved.
+ */
+
+import java.util.*;
 
 public class Database {
 
@@ -100,5 +115,30 @@ public class Database {
 		ParticipantList.trimToSize();
 		Collections.shuffle(ParticipantList);
 		return ParticipantList;
+	}
+	
+	public ArrayList<Race> setRaceList(String gameID, int raceType, ArrayList<Participant> participantsByType,
+			ArrayList<Official> official) {
+
+		ArrayList<Race> raceResult = new ArrayList<Race>();
+		Game game = new Game();
+
+		for (int i = 0; i < participantsByType.size(); i++) {
+			int competeTime = game.getCompeteTime(raceType);
+			if (raceType == 1) {
+				raceResult.add(new Race(gameID, participantsByType.get(i), official.get(0), competeTime, 0));
+			} else if (raceType == 2) {
+				raceResult.add(new Race(gameID, participantsByType.get(i), official.get(0), competeTime, 0));
+			} else if (raceType == 3) {
+				raceResult.add(new Race(gameID, participantsByType.get(i), official.get(0), 0, 0));
+			} else {
+				System.out.println("There is no race available!\n");
+			}
+
+		}
+		Collections.sort(raceResult, Comparator.comparingInt(Race::getCompleteTime));
+		Official o = new Official(null, null, 0, null, null);
+		o.setScore(raceResult);
+		return raceResult;
 	}
 }
