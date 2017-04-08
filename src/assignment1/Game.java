@@ -31,9 +31,9 @@ public class Game {
 	public int gameSelect() {
 		int raceType = 0;
 		boolean validInput = false;
-
+		String raceID1 = null;
 		do {
-
+			
 			try { // to print sport race menu
 				String menu[] = { "Select a sport to play: ", "========================", "1. Swimming race",
 						"2. Running race", "3. Cycling race" };
@@ -43,19 +43,19 @@ public class Game {
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				raceType = scanner.nextInt(); // user insert input
-
+				
 				if (raceType == 1) { // 1 = swimming race
 					raceRounds += 1;
-					raceID = "SW" + raceRounds; // set the Swimming Race ID
+					raceID1 = "SW" + raceRounds; // set the Swimming Race ID
 					System.out.println("\nCurrent sport: Swimming Race " + raceID + "\n");
+					validInput = true;
 				} else if (raceType == 2) { // 2 is running race
 					raceRounds += 1;
-					raceID = "SP" + raceRounds; // set the Running Race ID
+					raceID1 = "SP" + raceRounds; // set the Running Race ID
 					System.out.println("\nCurrent sport: Running Race " + raceID + "\n");
-					validInput = false;
 				} else if (raceType == 3) { // 3 is cycling race
 					raceRounds += 1;
-					raceID = "CY" + raceRounds; // set the Cycling Race ID
+					raceID1 = "CY" + raceRounds; // set the Cycling Race ID
 					System.out.println("\nCurrent sport: Cycling Race " + raceID + "\n");
 				} else { // to tell user that they insert wrong input
 					System.out.println("\nNot a valid Input. Please try again!\n");
@@ -66,6 +66,8 @@ public class Game {
 				validInput = false;
 			}
 		} while (!validInput); // end while if true
+	
+		raceID = raceID1;
 		return raceType; // return race type
 	} // end method gameSelect
 

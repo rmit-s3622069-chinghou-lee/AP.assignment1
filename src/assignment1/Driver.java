@@ -20,6 +20,7 @@ import java.util.*;
 
 /*Driver program for the Ozlympic Game*/
 public class Driver {
+	String raceID = null; // Race ID is not yet generated
 
 	// constants corresponding to main menu options
 	private static final int gameSelect = 1;
@@ -32,7 +33,7 @@ public class Driver {
 	/* Method to start the Ozlympic Game */
 	public void gameRun() {
 		int gameOption; // input game menu
-		String raceID = null; // Race ID is not yet generated
+
 		int raceType = 0; // Race type is not yet generated
 		String userPrediction = null; // User has not insert input
 
@@ -46,9 +47,9 @@ public class Driver {
 		ArrayList<Official> Official = Database.getOfficial(); // Official's
 		// information
 		// database
-
+		Game Game = new Game(); // to call Game class methods
 		do {
-			Game Game = new Game(); // to call Game class methods
+	
 			gameOption = displayMenu(participantsByType, raceResult);
 
 			switch (gameOption) { // user input game menu

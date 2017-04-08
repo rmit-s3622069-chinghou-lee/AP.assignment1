@@ -1,6 +1,6 @@
 package assignment1;
 
-public class SuperAthlete extends Participant {
+public class SuperAthlete extends Athlete {
 	private String superAthleteID;
 	private String superAthleteName;
 	private int superAthleteAge;
@@ -22,7 +22,8 @@ public class SuperAthlete extends Participant {
 				+ superAthleteState;
 	}
 
-	public double compete() {
+	@Override
+	public int compete() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
