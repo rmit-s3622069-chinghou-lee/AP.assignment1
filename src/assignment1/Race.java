@@ -16,57 +16,59 @@ package assignment1;
  * (C) Copyright by Ching Hou,Lee. All Rights Reserved.
  */
 
+// Race class refer to Super class Game
 public class Race extends Game {
 
-	private String raceID;
-	private Participant participant;
-	private Official official;
-	private int completeTime;
+	private String raceID; // represent race ID
+	private Participant participant; // to call race result's participant
+	private Official official; // to call race result's referee
+	private int completeTime; // represent athlete's complete time
 	private int athleteScore;
 
+	// Race constructor
 	public Race(String raceID, Participant participant, Official official, int completeTime, int athleteScore) {
 		this.raceID = raceID;
 		this.participant = participant;
 		this.official = official;
 		this.completeTime = completeTime;
 		this.athleteScore = athleteScore;
-	}
+	} // end Race contructor
 
 	public void setRaceID(String raceID) {
 		this.raceID = raceID;
-	}
+	} // end method setRaceID
 
 	public Participant getParticipant() {
-		return participant;
-	}
+		return participant;  // get participant
+	} // end method getParticipant
 
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
-	}
+	} // end method setParticipant
 
 	public Official getOfficial() {
-		return official;
-	}
+		return official;  // get official
+	} // end method getOfficial
 
 	public void setOfficial(Official official) {
 		this.official = official;
-	}
+	} // end method setOfficial
 
-	public double setCompleteTime(double completeTime) {
-		return completeTime;
-	}
+	public void setCompleteTime(int completeTime) {
+		this.completeTime = completeTime;
+	} // end method setCompleteTime
 
 	public int getCompleteTime() {
-		return completeTime;
-	}
+		return completeTime;  // get athlete's complete time
+	} // end method getCompleteTime
 
 	public int getAthleteScore() {
-		return athleteScore;
-	}
+		return athleteScore; // get athlete's score
+	} // end method getAthleteScore
 
 	public void setAthleteScore(int athleteScore) {
 		this.athleteScore = athleteScore;
-	}
+	} // end method setAthleteScore
 
 	/*
 	 * Method to able to display print based on athlete's ID, athlete's name,
@@ -84,7 +86,7 @@ public class Race extends Game {
 	 * athlete's respective score
 	 */
 	public String toString() { // print athlete's ID, athlete's name and
-								// athlete's respective score
+		// athlete's respective score
 		return participant.getParticipantID() + "\t" + "\t" + participant.getParticipantName() + "\t" + "\t"
 				+ getAthleteScore();
 	} // end method toString

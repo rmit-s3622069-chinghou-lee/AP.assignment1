@@ -30,27 +30,19 @@ public class Driver {
 	private static final int displayAthletePoints = 5;
 	private static final int gameExit = 6;
 
+	Game Game = new Game(); // to call Game class methods
+
 	/* Method to start the Ozlympic Game */
 	public void gameRun() {
 		int gameOption; // input game menu
 
 		int raceType = 0; // Race type is not yet generated
-		String userPrediction = null; // User has not insert input
-
-		Database Database = new Database(); // participants' information
-		// database
 
 		boolean gameLoop = false;
 
-		ArrayList<Participant> participantsByType = new ArrayList<Participant>();
-		ArrayList<Race> raceResult = new ArrayList<Race>();
-		ArrayList<Official> Official = Database.getOfficial(); // Official's
-		// information
-		// database
-		Game Game = new Game(); // to call Game class methods
 		do {
-	
-			gameOption = displayMenu(participantsByType, raceResult);
+
+			gameOption = displayMenu();
 
 			switch (gameOption) { // user input game menu
 			case gameSelect:
@@ -59,23 +51,20 @@ public class Driver {
 				gameLoop = false;
 				break;
 			case gamePrediction: // user predict the winner
-				participantsByType = Database.ParticipantsByType(raceType);
-				Game.printAthleteSelection(participantsByType);
-				userPrediction = Game.getUserPrediction(participantsByType);
+				Game.getUserPrediction(raceType);
 				gameLoop = false;
 				break;
 			case gameStart: // start game, compare user prediction, generate
 				// result
-				raceResult = Database.setRaceList(raceID, raceType, participantsByType, Official);
-				Game.gameStart(userPrediction, raceResult);
+				Game.gameStart(raceType);
 				gameLoop = false;
 				break;
 			case displayFinalResult: // display final result to user
-				Game.displayFinalResult(gameOption, raceID, raceResult);
+				Game.displayFinalResult(gameOption);
 				gameLoop = false;
 				break;
 			case displayAthletePoints: // display athlete points to user
-				Game.displayFinalResult(gameOption, raceID, raceResult);
+				Game.displayFinalResult(gameOption);
 				gameLoop = false;
 				break;
 			case gameExit: // user exit the program
@@ -89,8 +78,7 @@ public class Driver {
 	}// end method gameRun
 
 	/* Method to print the Ozlympic's main menu and return an input selection */
-	public int displayMenu(ArrayList<Participant> participantsByType, ArrayList<Race> raceResult) { // display
-
+	public int displayMenu() { // display
 		int option = 0; // game menu input not yet generated
 		boolean validInput = false;
 
@@ -108,32 +96,10 @@ public class Driver {
 				Scanner scanner = new Scanner(System.in);
 				option = scanner.nextInt(); // user insert input
 
-				if (option >= 1 && option <= 6
-						&& participantsByType == null) { /*
-															 * start game by
-															 * detect valid user
-															 * input and empty
-															 * participant list
-															 */
+				if (option >= 1 && option <= 6) {
 					System.out.println("");
-				} else if (option == 1
-						&& participantsByType != null) { /*
-															 * to detect user
-															 * input and
-															 * participant list
-															 * is not empty
-															 */
-					participantsByType.clear(); // empty participant list
-					raceResult.clear(); // empty race result
-					System.out.println("");
-				} else if ((option >= 2 && option <= 6
-						&& participantsByType != null)) { /*
-															 * to continue after
-															 * user selected a
-															 * race
-															 */
-					System.out.println("");
-				} else { // to tell user wrong menu input
+				} else {
+
 					System.out.println("\nPlease insert a valid input!\n");
 					validInput = false;
 				}

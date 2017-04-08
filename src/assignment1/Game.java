@@ -22,18 +22,34 @@ import java.util.*;
 public class Game {
 
 	private String raceID;
-	private int raceRounds = 0;
+	private int raceRounds;
+	private int raceType;
+
+	private String userPrediction;
+
+	private Database Database = new Database();
+
+	private ArrayList<Official> official = Database.getOfficial();
+
+	private ArrayList<Participant> participantsByType;
+	private ArrayList<Race> raceStart;
+	private ArrayList<Race> raceResult;
+
+	public ArrayList<Participant> getParticipantByType(int raceType) {
+		participantsByType = Database.ParticipantsByType(raceType); // get
+																	// ParticipantsByType()
+		return participantsByType; // return participant based by race type
+	} // end method ParticipantsByType()
 
 	/*
 	 * Method for the Ozlympic Game Menu No.1 to get and return user input for
 	 * sport race
 	 */
 	public int gameSelect() {
-		int raceType = 0;
+
 		boolean validInput = false;
-		String raceID1 = null;
 		do {
-			
+
 			try { // to print sport race menu
 				String menu[] = { "Select a sport to play: ", "========================", "1. Swimming race",
 						"2. Running race", "3. Cycling race" };
@@ -43,19 +59,19 @@ public class Game {
 				System.out.print("Enter a option: ");
 				Scanner scanner = new Scanner(System.in);
 				raceType = scanner.nextInt(); // user insert input
-				
+
 				if (raceType == 1) { // 1 = swimming race
 					raceRounds += 1;
-					raceID1 = "SW" + raceRounds; // set the Swimming Race ID
+					raceID = "SW" + raceRounds; // set the Swimming Race ID
 					System.out.println("\nCurrent sport: Swimming Race " + raceID + "\n");
 					validInput = true;
 				} else if (raceType == 2) { // 2 is running race
 					raceRounds += 1;
-					raceID1 = "SP" + raceRounds; // set the Running Race ID
+					raceID = "SP" + raceRounds; // set the Running Race ID
 					System.out.println("\nCurrent sport: Running Race " + raceID + "\n");
 				} else if (raceType == 3) { // 3 is cycling race
 					raceRounds += 1;
-					raceID1 = "CY" + raceRounds; // set the Cycling Race ID
+					raceID = "CY" + raceRounds; // set the Cycling Race ID
 					System.out.println("\nCurrent sport: Cycling Race " + raceID + "\n");
 				} else { // to tell user that they insert wrong input
 					System.out.println("\nNot a valid Input. Please try again!\n");
@@ -66,26 +82,32 @@ public class Game {
 				validInput = false;
 			}
 		} while (!validInput); // end while if true
-	
-		raceID = raceID1;
 		return raceType; // return race type
 	} // end method gameSelect
 
 	/*
-	 * Method to print athlete list based race type and to check sufficiency of athlete to compete.
+	 * Method to print athlete list based race type and to check sufficiency of
+	 * athlete to compete.
 	 */
-	public void printAthleteSelection(ArrayList<Participant> participantsByType) {
+	public void printAthleteSelection(int raceType) {
 		final int minAthlete = 4; // min athlete allowed to join is 4
 		final int maxAthlete = 8; // max athlete allowed to join is 8
 
 		System.out.println(
 				"No" + "\t" + "Athlete ID" + "\t" + "Athlete Name" + "\t" + "Athlete Age" + "\t" + "Athlete State");
 		System.out.println("======================================================================");
-		if (participantsByType.size() >= 4 && participantsByType.size() <= 8) { // check sufficiency of athlete to compete
+		if (participantsByType.size() >= 4 && participantsByType.size() <= 8) { // check
+			// sufficiency
+			// of
+			// athlete
+			// to
+			// compete
 			for (int i = 0, No = 0; i < participantsByType.size(); i++, No++) {
 				System.out.println(No + "\t" + participantsByType.get(i).toString());
 			}
-		} else if (participantsByType.size() <= minAthlete && participantsByType.size() >= maxAthlete) { // not enough participant
+		} else if (participantsByType.size() <= minAthlete && participantsByType.size() >= maxAthlete) { // not
+			// enough
+			// participant
 			System.out.println("Sorry! There is enough athletes to run the race!");
 		}
 		System.out.println("======================================================================");
@@ -95,11 +117,13 @@ public class Game {
 	 * Method to let user input their prediction and return user prediction by
 	 * converting to athlete ID
 	 */
-	public String getUserPrediction(ArrayList<Participant> participantsByType) {
+	public String getUserPrediction(int raceType) {
 		int userInputPrediction;
 		String athleteIDPredict = null;
 		boolean validInput = false;
 
+		getParticipantByType(raceType);
+		printAthleteSelection(raceType);
 		do {
 			try {
 				System.out.println("\nPlease predict the winner by entering the athlete's ID: ");
@@ -116,7 +140,7 @@ public class Game {
 				// later
 				// comparison
 			} catch (Exception e) { // if user insert not according to athlete
-									// list provided
+				// list provided
 				System.out.println("Please insert valid athlete's ID!");
 				validInput = false;
 			}
@@ -130,8 +154,10 @@ public class Game {
 	 * generated winner. After that, system will generate congratulations
 	 * message.
 	 */
-	public void gameStart(String userPrediction, ArrayList<Race> raceResult) {
-		String raceWinner = raceResult.get(0).getParticipant().getParticipantID(); // get
+	public void gameStart(int raceType) {
+
+		raceStart = setRaceList(raceType);
+		String raceWinner = raceStart.get(0).getParticipant().getParticipantID(); // get
 		// winner
 		// from
 		// race
@@ -141,7 +167,7 @@ public class Game {
 			// race result's winner
 			System.out.println("Great Gob! You got the right one!");
 			System.out.println("The Winner is " + raceWinner + ", "
-					+ raceResult.get(0).getParticipant().getParticipantName() + "\n"); // display
+					+ raceStart.get(0).getParticipant().getParticipantName() + "\n"); // display
 			// the
 			// winner
 			// name
@@ -150,19 +176,51 @@ public class Game {
 			// winner
 			System.out.println("Better luck next time!\n");
 			System.out.println("The Winner is " + raceWinner + ", "
-					+ raceResult.get(0).getParticipant().getParticipantName() + "\n"); // display
+					+ raceStart.get(0).getParticipant().getParticipantName() + "\n"); // display
 			// the
 			// winner
 			// name
 		}
 	} // end method gameStart
 
+	public ArrayList<Race> setRaceList(int raceType) {
+
+		raceResult = new ArrayList<Race>();
+
+		for (int i = 0; i < participantsByType.size(); i++) {
+			int competeTime = getCompeteTime(raceType);
+			if (raceType == 1) { // 1 = swimming race
+				raceResult.add(new Race(raceID, participantsByType.get(i), official.get(0), competeTime, 0));
+			} else if (raceType == 2) { // 2 = sprinter race
+				raceResult.add(new Race(raceID, participantsByType.get(i), official.get(0), competeTime, 0));
+			} else if (raceType == 3) { // 3 = cycling race
+				raceResult.add(new Race(raceID, participantsByType.get(i), official.get(0), 0, 0));
+			} else { // if no race available
+				System.out.println("There is no race available!\n");
+			}
+
+		}
+		Collections.sort(raceResult, Comparator.comparingInt(Race::getCompleteTime)); // sort
+		// race
+		// based
+		// on
+		// shortest
+		// athlete's
+		// complete
+		// time
+		Official o = new Official(null, null, 0, null, null);// call
+		// official/referee
+		o.setScore(raceResult);// referee to set score for winner
+		return raceResult; // return ArrayList<Race> Race Result
+	} // end method setRaceList
+
 	/*
 	 * Method to display final result depends on user's menu input. Game menu no
 	 * 4 will generate race result. Game menu no 5 will generate respective
 	 * athlete points based on race result
 	 */
-	public void displayFinalResult(int gameOption, String raceID, ArrayList<Race> raceResult) {
+	public void displayFinalResult(int gameOption) {
+
 		if (gameOption == 4 && raceResult != null) { // Ozlympic menu No 4 and
 			// race result is not
 			// empty

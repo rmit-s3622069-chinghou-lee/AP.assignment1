@@ -16,12 +16,15 @@ package assignment1;
  * (C) Copyright by Ching Hou,Lee. All Rights Reserved.
  */
 
-abstract public class Athlete extends Participant {
+// Abstract class of Athlete refer to Super class Participant
+public abstract class Athlete extends Participant {
 
-	public Athlete(String id, String name, int age, String state, String type) {
-		super(id, name, age, state, type);
-	}
+	// constructor for Athlete class referencing to Participant Class
+	public Athlete(String athleteID, String athleteName, int athleteAge, String athleteState, String athleteType) {
+		super(athleteID, athleteName, athleteAge, athleteState, athleteType);
+	} // end Athlete constructor
 
-	abstract public int compete();
+	// abstract method to get different athlete's compete time
+	public abstract int compete();
 
-}
+} // end method of Athlete
